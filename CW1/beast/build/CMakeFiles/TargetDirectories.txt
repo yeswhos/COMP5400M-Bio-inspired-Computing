@@ -1,0 +1,4 @@
+/home/csunix/sc19fm/Downloads/beast/build/libs/CMakeFiles/BEASTLIB.dir
+/home/csunix/sc19fm/Downloads/beast/build/apps/CMakeFiles/beast.dir
+/home/csunix/sc19fm/Downloads/beast/build/projects/CMakeFiles/demos.dir
+/home/csunix/sc19fm/Downloads/beast/build/projects/CMakeFiles/mouse.dir
