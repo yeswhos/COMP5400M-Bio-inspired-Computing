@@ -3,6 +3,7 @@
 #include "neuralanimat.h"
 #include "sensor.h"
 #include "population.h"
+#include <fstream>
 
 using namespace std;
 using namespace BEAST;
@@ -137,9 +138,29 @@ public:
 	// the power usage, so a mouse is penalised for simply charging around
 	// as fast as possible and randomly collecting cheese - it needs to find
 	// its target carefully.
+	
 	virtual float GetFitness()const
 	{
-		return This.cheesesFound > 0 ? static_cast<float>(This.cheesesFound) / This.DistanceTravelled.as<float>() : 0;
+		float a = This.cheesesFound;
+		float b = This.DistanceTravelled;
+		
+		//i++;
+		float c = a / b;
+
+		//c += c;
+		//if (c != 0){
+			//c = c + ;
+			//cout << c << endl;
+			//c = 0;
+			//i = 0;
+		//}
+		ofstream out("/home/beast/Downloads/log.txt", ios::app);
+		out << c << endl;
+		out.close();
+
+		//cout << c << endl;
+		return c;
+		//return This.cheesesFound > 0 ? static_cast<float>(This.cheesesFound) / This.DistanceTravelled.as<float>() : 0;
 	}
 
 	// Overloading the ToString method allows us to output a small amount of
@@ -147,6 +168,7 @@ public:
 	// mouse is clicked on.
 	virtual string ToString()const
 	{
+		
 		ostringstream out;
 		out << " Power used: " << This.PowerUsed;
 		return out.str();
@@ -168,7 +190,8 @@ public:
 	theGA(0.7f, 0.05f),	// Crossover probability of 0.7, mutation probability of 0.05
 //	theMice(30),		// 30 mice are in the population.
 	theMice(30, theGA), // 30 mice are in the population.
-	theCheeses(30)		// 30 cheeses are around at one time.
+	theCheeses(30)	// 30 cheeses are around at one time.
+	
 	{
 		// We're using a rank selection method. Consult the BEAST
 		// documentation for GeneticAlgorithm, the ar23 course slides or
@@ -181,6 +204,7 @@ public:
 
 		This.Add("Mice", This.theMice);
 		This.Add("Cheeses", This.theCheeses);
+		
 	}
 };
 
