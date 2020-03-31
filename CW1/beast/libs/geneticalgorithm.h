@@ -129,7 +129,7 @@ public:
 	virtual genotype_type GetGenotype()const = 0;	///< Returns the genotype.
 	virtual void		SetGenotype(const genotype_type&) = 0;	///< Sets the genotype.
 	virtual float		GetFitness()const = 0;	///< Returns the fitness.
-
+	
 	/** Stores current fitness, overload this for one way of resetting
 	 * individuals' internal fitness scores each assessment (another way might
 	 * be e.g. to overload Init).

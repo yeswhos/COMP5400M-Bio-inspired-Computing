@@ -7,7 +7,7 @@ bool BeastApp::OnInit(void)
 {
 //	wxLog::SetTraceMask(wxTraceMessages);
 
-	wxChar* plugin = NULL;
+	wxString plugin;
 
 	if (argc > 1)
 	    plugin = argv[1];

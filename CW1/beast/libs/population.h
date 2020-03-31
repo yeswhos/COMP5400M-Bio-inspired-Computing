@@ -54,7 +54,7 @@ public:
 
 	/// Returns the current team.
 	const std::vector<_Ind*>& GetTeam()const	{ return team; }
-
+	
 	/// Outputs data about the current generation, currently only from the GA.
 	virtual std::string ToString()const
 	{
@@ -63,6 +63,8 @@ public:
 	
 	virtual void	Serialise(std::ostream&)const;
 	virtual void	Unserialise(std::istream&);
+
+	//virtual void printPlot()const;
 
 	GeneticAlgorithm<_Ind, _MutFunc>& GA;
 

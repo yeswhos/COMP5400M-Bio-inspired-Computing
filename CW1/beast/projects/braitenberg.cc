@@ -14,7 +14,7 @@ using namespace BEAST;
 class Dot : public WorldObject
 {
 public:
-	Dot(Vector2D l = Vector2D()):WorldObject(l, 0.0, 10.0){SetColour(ColourPalette[COLOUR_YELLOW]);}
+	Dot(Vector2D l = Vector2D()):WorldObject(l, 0.0, 10.0){SetColour(ColourPalette[COLOUR_YELLOW]);SetMoveable(true);}
 	virtual ~Dot(){}
 
 	// This simply adjusts the standard serialisation (save to file) code

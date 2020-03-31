@@ -46,6 +46,11 @@ public:
 
 	float GetFitness()const
 	{
+		float a = timesEaten;
+		ofstream out("/home/beast/Documents/COMP5400M-Bio-inspired-Computing/CW1/03.29/prey.txt", ios::app);
+		out << a << endl;
+		out.close();
+		//cout << "timeEaten" << timesEaten << endl;
 		return 1.0f / static_cast<float>(timesEaten);
 	}
 
@@ -92,7 +97,14 @@ public:
 		FFNAnimat::OnCollision(obj);
 	}
 
-	float GetFitness()const { return preyEaten; }
+	float GetFitness()const { 
+		float a = preyEaten;
+		ofstream out("/home/beast/Documents/COMP5400M-Bio-inspired-Computing/CW1/03.29/pred.txt", ios::app);
+		out << a << endl;
+		out.close();
+		// //cout << "preyEaten" << preyEaten << endl;
+		return preyEaten; 
+	}
 
 	virtual string ToString()const
 	{

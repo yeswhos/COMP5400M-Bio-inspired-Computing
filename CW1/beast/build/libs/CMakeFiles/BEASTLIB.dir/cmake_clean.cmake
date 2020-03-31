@@ -1,4 +1,4 @@
-FILE(REMOVE_RECURSE
+file(REMOVE_RECURSE
   "CMakeFiles/BEASTLIB.dir/animat.cc.o"
   "CMakeFiles/BEASTLIB.dir/animatmonitor.cc.o"
   "CMakeFiles/BEASTLIB.dir/bacteria.cc.o"
@@ -23,6 +23,6 @@ FILE(REMOVE_RECURSE
 )
 
 # Per-language clean rules from dependency scanning.
-FOREACH(lang CXX)
-  INCLUDE(CMakeFiles/BEASTLIB.dir/cmake_clean_${lang}.cmake OPTIONAL)
-ENDFOREACH(lang)
+foreach(lang CXX)
+  include(CMakeFiles/BEASTLIB.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

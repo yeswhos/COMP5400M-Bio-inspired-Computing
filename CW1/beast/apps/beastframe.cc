@@ -288,7 +288,7 @@ void BeastFrame::OnLoad(wxCommandEvent& event)
 		  strName = wxString(i->first.c_str(),*wxConvCurrent) + wxString(".pop",*wxConvCurrent);
 		  strFileName = wxFileSelector(_T("Load Population"), _T(""), strName,
 						     _T("*.pop"), _T("Population files (*.pop) | *.pop"),
-										 wxOPEN | wxFILE_MUST_EXIST);
+										 wxFC_OPEN | wxFD_FILE_MUST_EXIST);
 
 			if (!strFileName.empty()) {
 				try {
@@ -324,7 +324,7 @@ void BeastFrame::OnSave(wxCommandEvent& event)
 		        strName = wxString(i->first.c_str(),*wxConvCurrent) + wxString(".pop",*wxConvCurrent);
 			strFileName = wxFileSelector(_T("Save Population As"), _T(""), strName,
 						     _T("*.pop"), _T("Population files (*.pop) | *.pop"),
-										 wxSAVE | wxOVERWRITE_PROMPT);
+										 wxFC_SAVE | wxFD_OVERWRITE_PROMPT);
 
 			if (!strFileName.empty()) {
 				try {

@@ -24,8 +24,8 @@ public:
 
 	virtual void Control()
 	{
-		This.Controls["left"] = This.Sensors["left"]->GetOutput();
-		This.Controls["right"] = This.Sensors["right"]->GetOutput();
+		This.Controls["left"] = This.Sensors["right"]->GetOutput();
+		This.Controls["right"] = This.Sensors["left"]->GetOutput();
 	}
 };
 

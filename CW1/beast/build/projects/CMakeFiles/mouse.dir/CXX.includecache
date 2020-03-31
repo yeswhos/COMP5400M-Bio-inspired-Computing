@@ -1,4 +1,4 @@
-#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
 
 #IncludeRegexScan: ^.*$
 
@@ -342,11 +342,11 @@ vector2d.h
 drawable.h
 ../libs/drawable.h
 
-/home/csunix/sc19fm/Downloads/beast/projects/mouse.cc
+/home/beast/beast/projects/mouse.cc
 neuralanimat.h
-/home/csunix/sc19fm/Downloads/beast/projects/neuralanimat.h
+/home/beast/beast/projects/neuralanimat.h
 sensor.h
-/home/csunix/sc19fm/Downloads/beast/projects/sensor.h
+/home/beast/beast/projects/sensor.h
 population.h
-/home/csunix/sc19fm/Downloads/beast/projects/population.h
+/home/beast/beast/projects/population.h
 

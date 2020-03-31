@@ -11,7 +11,7 @@ if(wxWidgets_FOUND)
 
     	add_executable(beast wxbeast.cc screengrab.cc beastframe.cc worldglcanvas.cc)
 
-    	target_link_libraries(beast BEASTLIB ${wxWidgets_LIBRARIES} ${OPENGL_gl_LIBRARY} ${GLUT_glut_LIBRARY} ${GLUT_cocoa_LIBRARY} glut)
+    	target_link_libraries(beast BEASTLIB ${wxWidgets_LIBRARIES} ${OPENGL_gl_LIBRARY} ${GLUT_glut_LIBRARY} ${GLUT_cocoa_LIBRARY} glut GLU)
 
 else(wxWidgets_FOUND)
 	Message("wxWidgets not found!")

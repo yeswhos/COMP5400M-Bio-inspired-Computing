@@ -1,4 +1,12 @@
-/home/csunix/sc19fm/Downloads/beast/build/libs/CMakeFiles/BEASTLIB.dir
-/home/csunix/sc19fm/Downloads/beast/build/apps/CMakeFiles/beast.dir
-/home/csunix/sc19fm/Downloads/beast/build/projects/CMakeFiles/demos.dir
-/home/csunix/sc19fm/Downloads/beast/build/projects/CMakeFiles/mouse.dir
+/home/beast/beast/build/CMakeFiles/rebuild_cache.dir
+/home/beast/beast/build/CMakeFiles/edit_cache.dir
+/home/beast/beast/build/libs/CMakeFiles/rebuild_cache.dir
+/home/beast/beast/build/libs/CMakeFiles/BEASTLIB.dir
+/home/beast/beast/build/libs/CMakeFiles/edit_cache.dir
+/home/beast/beast/build/apps/CMakeFiles/rebuild_cache.dir
+/home/beast/beast/build/apps/CMakeFiles/beast.dir
+/home/beast/beast/build/apps/CMakeFiles/edit_cache.dir
+/home/beast/beast/build/projects/CMakeFiles/rebuild_cache.dir
+/home/beast/beast/build/projects/CMakeFiles/edit_cache.dir
+/home/beast/beast/build/projects/CMakeFiles/demos.dir
+/home/beast/beast/build/projects/CMakeFiles/mouse.dir
