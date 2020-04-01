@@ -3,7 +3,6 @@
 #include "neuralanimat.h"
 #include "sensor.h"
 #include "population.h"
-#include <fstream>
 
 using namespace std;
 using namespace BEAST;
@@ -34,6 +33,7 @@ class Mouse : public Animat
 public:
 	Mouse()
 	{
+		
 		This.Add("angle", NearestAngleSensor<Cheese>());
 		This.InitRandom = true;
 	}
@@ -115,7 +115,7 @@ public:
 // An alternative to the NearestAngleSensor is the Proximity Sensor, which
 // gives less precise directional information, but does let the mouse know
 // how far away the cheese is.
-//		This.Add("proximity", ProximitySensor<Cheese>(PI/8, 80.0, 0.0));
+		//This.Add("proximity", ProximitySensor<Cheese>(PI/8, 80.0, 0.0));
 		This.InitRandom = true;
 		This.InitFFN(4);
 	}
@@ -141,26 +141,20 @@ public:
 	
 	virtual float GetFitness()const
 	{
-		float a = This.cheesesFound;
-		float b = This.DistanceTravelled;
+		// float a = This.cheesesFound;
+		// float b = This.DistanceTravelled;
 		
-		//i++;
-		float c = a / b;
+		
+		// float c = (a * 8) / b;
 
-		//c += c;
-		//if (c != 0){
-			//c = c + ;
-			//cout << c << endl;
-			//c = 0;
-			//i = 0;
-		//}
-		ofstream out("/home/beast/Downloads/log.txt", ios::app);
-		out << c << endl;
-		out.close();
+	
+		// ofstream out("/home/beast/Downloads/total.txt", ios::app);
+		// out << a << endl;
+		// out.close();
 
-		//cout << c << endl;
-		return c;
-		//return This.cheesesFound > 0 ? static_cast<float>(This.cheesesFound) / This.DistanceTravelled.as<float>() : 0;
+		// return c;
+
+		return This.cheesesFound > 0 ? static_cast<float>(This.cheesesFound) / This.DistanceTravelled.as<float>() : 0;
 	}
 
 	// Overloading the ToString method allows us to output a small amount of
