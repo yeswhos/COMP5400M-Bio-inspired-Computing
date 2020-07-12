@@ -24,11 +24,11 @@ public:
 
 	virtual void Control()
 	{
-		double a = This.Sensors["right"] ->GetOutput();
+		// double a = This.Sensors["right"] ->GetOutput();
 		This.Controls["left"] = This.Sensors["right"]->GetOutput();
 		This.Controls["right"] = This.Sensors["left"]->GetOutput();
-		cout << a << endl;
-		cout << "------------------------" << endl;
+		// cout << a << endl;
+		// cout << "------------------------" << endl;
 		// This.Controls["left"] = 0;
 		// This.Controls["right"] = 0;
 	}
@@ -39,9 +39,12 @@ class Circle : public WorldObject
 public:
 	Circle()
 	{
-		This.Radius = 2.0f;							 // Cheeses are quite small
-		This.SetColour(ColourPalette[COLOUR_YELLOW]);// Cheeses are yellow
-		This.InitRandom = true;						 // Cheases are scattered
+		
+		This.Radius = 200.0f;							 // Cheeses are quite small
+		This.SetColour(ColourPalette[COLOUR_BLACK]);// Cheeses are yellow
+		//This.InitRandom = true;						 // Cheases are scattered
+		SetLocation(400, 300);
+		This.Location = GetLocation();
 	}
 	virtual ~Circle(){}
 
@@ -59,7 +62,7 @@ class ShrewSimulation : public Simulation
 
 public:
 	ShrewSimulation():
-	theCircle(20),
+	theCircle(1),
 	grpShrew(2)
 	{
 		This.Add("Circle", This.theCircle);
