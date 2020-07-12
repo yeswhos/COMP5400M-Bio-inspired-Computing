@@ -18,16 +18,16 @@ public:
 
 		This.SetInitRandom(true);	// Start in random locations
 
-		This.Radius = 30.0;			// Shrews are a little bigger than usual
+		This.Radius = 20.0;			// Shrews are a little bigger than usual
 	}
 	virtual ~Shrew(){}
 
 	virtual void Control()
 	{
-		int a = This.Sensors["right"] ->GetOutput();
+		//double a = This.Sensors["right"] ->GetOutput();
 		This.Controls["left"] = This.Sensors["right"]->GetOutput();
 		This.Controls["right"] = This.Sensors["left"]->GetOutput();
-		cout << a << endl;
+		//cout << a << endl;
 		// This.Controls["left"] = 0;
 		// This.Controls["right"] = 0;
 	}
@@ -39,7 +39,7 @@ class ShrewSimulation : public Simulation
 
 public:
 	ShrewSimulation():
-	grpShrew(2)
+	grpShrew(5)
 	{
 		This.Add("Shrews", This.grpShrew);
 	}
