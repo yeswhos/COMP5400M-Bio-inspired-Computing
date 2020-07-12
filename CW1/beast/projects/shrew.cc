@@ -24,23 +24,45 @@ public:
 
 	virtual void Control()
 	{
-		//double a = This.Sensors["right"] ->GetOutput();
+		double a = This.Sensors["right"] ->GetOutput();
 		This.Controls["left"] = This.Sensors["right"]->GetOutput();
 		This.Controls["right"] = This.Sensors["left"]->GetOutput();
-		//cout << a << endl;
+		cout << a << endl;
+		cout << "------------------------" << endl;
 		// This.Controls["left"] = 0;
 		// This.Controls["right"] = 0;
 	}
 };
 
+class Circle : public WorldObject
+{
+public:
+	Circle()
+	{
+		This.Radius = 2.0f;							 // Cheeses are quite small
+		This.SetColour(ColourPalette[COLOUR_YELLOW]);// Cheeses are yellow
+		This.InitRandom = true;						 // Cheases are scattered
+	}
+	virtual ~Circle(){}
+
+	// When a Cheese is Eaten, it reappears in a random location.
+	// void Eaten()
+	// {
+	// 	This.Location = This.MyWorld->RandomLocation();
+	// }
+};
+
 class ShrewSimulation : public Simulation
 {
 	Group<Shrew> grpShrew;
+	Group<Circle> theCircle;
 
 public:
 	ShrewSimulation():
-	grpShrew(5)
+	theCircle(20),
+	grpShrew(2)
 	{
+		This.Add("Circle", This.theCircle);
 		This.Add("Shrews", This.grpShrew);
 	}
 };
