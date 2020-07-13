@@ -13,6 +13,7 @@ class Shrew : public Animat // Shrew is derived from Animat
 public:
 	Shrew()
 	{
+		//need to add area sensor
 		This.Add("left", ProximitySensor<Shrew>(PI/5, 200.0, -PI/20));
 		This.Add("right", ProximitySensor<Shrew>(PI/5, 200.0, PI/20));
 
@@ -30,7 +31,7 @@ public:
 		double b = This.Sensors["left"]->GetOutput();
 
 		if((a == 0.0) && (b == 0)){
-			This.Controls["left"] = 1.8;
+			This.Controls["left"] = 1.9;
 			This.Controls["right"] = 1.5;
 		}
 		else{
