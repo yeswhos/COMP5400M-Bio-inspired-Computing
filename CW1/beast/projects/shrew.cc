@@ -17,20 +17,32 @@ public:
 		This.Add("right", ProximitySensor<Shrew>(PI/5, 200.0, PI/20));
 
 		This.SetInitRandom(true);	// Start in random locations
+		// SetLocation(400, 250);
+		// This.Location = GetLocation();
 
-		This.Radius = 20.0;			// Shrews are a little bigger than usual
+		This.Radius = 29.0;			// Shrews are a little bigger than usual
 	}
 	virtual ~Shrew(){}
 
 	virtual void Control()
 	{
-		// double a = This.Sensors["right"] ->GetOutput();
-		This.Controls["left"] = This.Sensors["right"]->GetOutput();
-		This.Controls["right"] = This.Sensors["left"]->GetOutput();
-		// cout << a << endl;
-		// cout << "------------------------" << endl;
-		// This.Controls["left"] = 0;
-		// This.Controls["right"] = 0;
+		double a = This.Sensors["right"]->GetOutput();
+		double b = This.Sensors["left"]->GetOutput();
+
+		if((a == 0.0) && (b == 0)){
+			This.Controls["left"] = 1.8;
+			This.Controls["right"] = 1.5;
+		}
+		else{
+			This.Controls["left"] = This.Sensors["right"]->GetOutput();
+			This.Controls["right"] = This.Sensors["left"]->GetOutput();
+		}
+
+		//cout << a << endl;
+		//cout << "------------------------" << endl;
+		// This.Controls["left"] = 0.0;
+		// This.Controls["right"] = 0.0;
+
 	}
 };
 
