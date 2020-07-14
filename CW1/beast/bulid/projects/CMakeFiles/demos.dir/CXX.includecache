@@ -521,6 +521,8 @@ animat.h
 /home/beast/COMP5400M-Bio-inspired-Computing/CW1/beast/projects/animat.h
 sensor.h
 /home/beast/COMP5400M-Bio-inspired-Computing/CW1/beast/projects/sensor.h
+sensorbase.h
+/home/beast/COMP5400M-Bio-inspired-Computing/CW1/beast/projects/sensorbase.h
 
 /home/beast/COMP5400M-Bio-inspired-Computing/CW1/beast/projects/signal.cc
 neuralanimat.h
