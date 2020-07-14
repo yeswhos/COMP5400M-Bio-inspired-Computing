@@ -103,6 +103,17 @@ Sensor* CollisionSensor()
 	return s;
 }
 
+template <class T>
+Sensor* LineSensor(Vector2D l, double o)
+{
+	Sensor* s = new AreaSensor(l, o);
+	s->SetMatchingFunction(new MatchKindOf<T>);
+	s->SetEvaluationFunction(new EvalCount());
+	s->SetScalingFunction(new ScaleThreshold(1.0));
+
+	return s;
+}
+
 /**
  * @}
  */
