@@ -17,13 +17,13 @@ public:
 		//need to add area sensor
 		This.Add("left", ProximitySensor<Shrew>(PI/5, 200.0, -PI/20));
 		This.Add("right", ProximitySensor<Shrew>(PI/5, 200.0, PI/20));
-		This.Add("line", LineSensor<Shrew>(Vector2D(400.0, 300.0), 200.0));
+		This.Add("line", LineSensor<Shrew>(Vector2D(400.0, 300.0), 200.0f));
 
-		//This.SetInitRandom(true);	// Start in random locations
+		This.SetInitRandom(true);	// Start in random locations
 		// SetLocation(400, 250);
 		// This.Location = GetLocation();
-		This.Location = Vector2D(400, 250);
-		This.Location = Vector2D(400, 300);
+		// This.Location = Vector2D(400, 250);
+		// This.Location = Vector2D(400, 300);
 		This.Radius = 29.0;			// Shrews are a little bigger than usual
 	}
 	virtual ~Shrew(){}
@@ -34,8 +34,8 @@ public:
 		double b = This.Sensors["left"]->GetOutput();
 
 		// if((a == 0.0) && (b == 0)){
-		// 	This.Controls["left"] = 1.9;
-		// 	This.Controls["right"] = 1.5;
+			This.Controls["left"] = 1.9;
+			This.Controls["right"] = 1.5;
 		// }
 		// else{
 		// 	This.Controls["left"] = This.Sensors["right"]->GetOutput();
@@ -47,8 +47,8 @@ public:
 		cout << c << endl;
 		//cout << a << endl;
 		//cout << "------------------------" << endl;
-		This.Controls["left"] = 0.0;
-		This.Controls["right"] = 0.0;
+		// This.Controls["left"] = 0.0;
+		// This.Controls["right"] = 0.0;
 
 	}
 };
@@ -82,7 +82,7 @@ class ShrewSimulation : public Simulation
 public:
 	ShrewSimulation():
 	theCircle(1),
-	grpShrew(2)
+	grpShrew(1)
 	{
 		This.Add("Circle", This.theCircle);
 		This.Add("Shrews", This.grpShrew);
