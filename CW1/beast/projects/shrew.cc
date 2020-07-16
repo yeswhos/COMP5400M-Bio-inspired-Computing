@@ -14,61 +14,6 @@ using namespace BEAST;
 
 // For more information on this file, take a look at Tutorial 1 in the
 // BEAST documentation.
-
-class Shrew : public Animat // Shrew is derived from Animat
-{
-public:
-	Shrew()
-	{
-		//need to add area sensor
-		This.Add("left", ProximitySensor<Shrew>(PI/5, 200.0, -PI/20));
-		This.Add("right", ProximitySensor<Shrew>(PI/5, 200.0, PI/20));
-		This.Add("line", LineSensor<Shrew>(Vector2D(400.0, 300.0), 200.0f));
-
-		This.SetInitRandom(true);	// Start in random locations
-		//This.InitRandom = false;
-		//SetStartLocation(Vector2D(300, 300));
-		
-		This.Radius = 28.0;			// Shrews are a little bigger than usual
-		SetMinSpeed(0.0);
-	}
-	virtual ~Shrew(){}
-
-	virtual void Control()
-	{
-		// double a = This.Sensors["right"]->GetOutput();
-		// double b = This.Sensors["left"]->GetOutput();
-		double c = This.Sensors["line"] ->GetOutput();
-		bool inRange = true;
-		double num = rand()/double(RAND_MAX);
-		//cout << num << endl;
-
-		// if ((c >= 22) && (c <= 29)){
-		// 	inRange = true;
-		// }else{
-		// 	inRange = false;
-		// }
-		// if (inRange){
-		// 	This.Controls["left"] = 0.5;
-		// 	This.Controls["right"] = num;
-
-		// }else{
-		// 	This.Controls["left"] = 0.0;
-		// 	This.Controls["right"] = 0.5;
-		// 	//sleep(1);
-		// }
-		This.Controls["left"] = 0.5;
-		This.Controls["right"] = 0.5;
-
-		// This.Controls["left"] = This.Sensors["right"]->GetOutput();
-		// This.Controls["right"] = This.Sensors["left"]->GetOutput();
-		
-		cout << c << endl;
-		
-
-	}
-};
-
 class Circle : public WorldObject
 {
 public:
@@ -89,6 +34,66 @@ public:
 	// 	This.Location = This.MyWorld->RandomLocation();
 	// }
 };
+
+class Shrew : public Animat // Shrew is derived from Animat
+{
+public:
+	
+	Shrew()
+	{	
+		
+		//need to add area sensor
+		This.Add("left", ProximitySensor<Shrew>(2 * PI, 300.0, -PI/20));
+		//This.Add("right", ProximitySensor<Shrew>(PI/5, 200.0, PI/20));
+		//This.Add("line", LineSensor<Shrew>(Vector2D(400.0, 300.0), 200.0f));
+		Sensors["left"] -> SetMatchingFunction(new MatchExact<Circle>);
+
+		This.SetInitRandom(true);	// Start in random locations
+		//This.InitRandom = false;
+		//SetStartLocation(Vector2D(300, 300));
+		
+		This.Radius = 28.0;			// Shrews are a little bigger than usual
+		SetMinSpeed(0.0);
+	}
+	
+	virtual ~Shrew(){
+		
+	}
+
+	virtual void Control()
+	{
+		// double a = This.Sensors["right"]->GetOutput();
+		double b = This.Sensors["left"]->GetOutput();
+		//double c = This.Sensors["line"] ->GetOutput();
+		//bool inRange = true;
+		double num = rand()/double(RAND_MAX);
+		//cout << num << endl;
+
+		// if ((c >= 22) && (c <= 29)){
+		// 	inRange = true;
+		// }else{
+		// 	inRange = false;
+		// }
+		// if (inRange){
+		This.Controls["left"] = 0.5;
+		This.Controls["right"] = num;
+		cout << b << endl;
+		// }else{
+		// 	This.Controls["left"] = 0.0;
+		// 	This.Controls["right"] = 0.5;
+		// 	//sleep(1);
+		// }
+
+		// This.Controls["left"] = This.Sensors["right"]->GetOutput();
+		// This.Controls["right"] = This.Sensors["left"]->GetOutput();
+		
+		//cout << c << endl;
+		
+
+	}
+};
+
+
 
 class ShrewSimulation : public Simulation
 {
