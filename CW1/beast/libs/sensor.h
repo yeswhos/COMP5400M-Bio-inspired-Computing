@@ -108,8 +108,8 @@ Sensor* LineSensor(Vector2D l, double o)
 {
 	Sensor* s = new AreaSensor(l, o);
 	s->SetMatchingFunction(new MatchKindOf<T>);
-	s->SetEvaluationFunction(new EvalNearestXDist(s, 100.0));
-	s->SetScalingFunction(new ScaleLinear(0.0, 500.0, 10.0, 0.0));
+	s->SetEvaluationFunction(new EvalNearestAngle(s, 100.0));
+	s->SetScalingFunction(new ScaleLinear(0.0, 100.0, 10.0, 0.0));
 
 	return s;
 }

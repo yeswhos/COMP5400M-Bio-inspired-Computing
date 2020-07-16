@@ -555,6 +555,10 @@ simulation.h
 /home/beast/COMP5400M-Bio-inspired-Computing/CW1/beast/projects/simulation.h
 bacteria.h
 /home/beast/COMP5400M-Bio-inspired-Computing/CW1/beast/projects/bacteria.h
+cstdlib
+-
+unistd.h
+-
 
 /home/beast/COMP5400M-Bio-inspired-Computing/CW1/beast/projects/signal.cc
 neuralanimat.h

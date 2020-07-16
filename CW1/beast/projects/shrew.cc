@@ -6,6 +6,8 @@
 #include "beast.h"
 #include "simulation.h"
 #include "bacteria.h"
+#include<cstdlib>
+#include <unistd.h>
 
 using namespace std;
 using namespace BEAST;
@@ -23,39 +25,46 @@ public:
 		This.Add("right", ProximitySensor<Shrew>(PI/5, 200.0, PI/20));
 		This.Add("line", LineSensor<Shrew>(Vector2D(400.0, 300.0), 200.0f));
 
-		//This.SetInitRandom(true);	// Start in random locations
-		This.InitRandom = false;
-		SetStartLocation(Vector2D(300, 300));
-		//SetLocation(4.0, 2.5);
-		//This.Location = GetLocation();
-		//This.Location = Vector2D(400, 400);
-		// This.Location = Vector2D(400, 300);
-		This.Radius = 29.0;			// Shrews are a little bigger than usual
-		SetMaxSpeed(0.0);
+		This.SetInitRandom(true);	// Start in random locations
+		//This.InitRandom = false;
+		//SetStartLocation(Vector2D(300, 300));
+		
+		This.Radius = 28.0;			// Shrews are a little bigger than usual
+		SetMinSpeed(0.0);
 	}
 	virtual ~Shrew(){}
 
 	virtual void Control()
 	{
-		double a = This.Sensors["right"]->GetOutput();
-		double b = This.Sensors["left"]->GetOutput();
+		// double a = This.Sensors["right"]->GetOutput();
+		// double b = This.Sensors["left"]->GetOutput();
+		double c = This.Sensors["line"] ->GetOutput();
+		bool inRange = true;
+		double num = rand()/double(RAND_MAX);
+		//cout << num << endl;
 
-		// if((a == 0.0) && (b == 0)){
-		// This.Controls["left"] = 0;
-		// This.Controls["right"] = 0;
+		// if ((c >= 22) && (c <= 29)){
+		// 	inRange = true;
+		// }else{
+		// 	inRange = false;
 		// }
-		// else{
-		// 	This.Controls["left"] = This.Sensors["right"]->GetOutput();
-		// 	This.Controls["right"] = This.Sensors["left"]->GetOutput();
+		// if (inRange){
+		// 	This.Controls["left"] = 0.5;
+		// 	This.Controls["right"] = num;
+
+		// }else{
+		// 	This.Controls["left"] = 0.0;
+		// 	This.Controls["right"] = 0.5;
+		// 	//sleep(1);
 		// }
+		This.Controls["left"] = 0.5;
+		This.Controls["right"] = 0.5;
+
 		// This.Controls["left"] = This.Sensors["right"]->GetOutput();
 		// This.Controls["right"] = This.Sensors["left"]->GetOutput();
-		double c = This.Sensors["line"] ->GetOutput();
+		
 		cout << c << endl;
-		//cout << a << endl;
-		//cout << "------------------------" << endl;
-		// This.Controls["left"] = 0.0;
-		// This.Controls["right"] = 0.0;
+		
 
 	}
 };
