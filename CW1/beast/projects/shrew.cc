@@ -35,6 +35,27 @@ public:
 	// }
 };
 
+class circleCenter : public WorldObject
+{
+public:
+	circleCenter()
+	{
+		
+		This.Radius = 1.1f;							 // Cheeses are quite small
+		This.SetColour(ColourPalette[COLOUR_WHITE]);// Cheeses are yellow
+		//This.InitRandom = true;						 // Cheases are scattered
+		SetLocation(400, 300);
+		This.Location = GetLocation();
+	}
+	virtual ~circleCenter(){}
+
+	// When a Cheese is Eaten, it reappears in a random location.
+	// void Eaten()
+	// {
+	// 	This.Location = This.MyWorld->RandomLocation();
+	// }
+};
+
 class Shrew : public Animat // Shrew is derived from Animat
 {
 public:
@@ -46,7 +67,7 @@ public:
 		This.Add("left", ProximitySensor<Shrew>(2 * PI, 300.0, -PI/20));
 		//This.Add("right", ProximitySensor<Shrew>(PI/5, 200.0, PI/20));
 		//This.Add("line", LineSensor<Shrew>(Vector2D(400.0, 300.0), 200.0f));
-		Sensors["left"] -> SetMatchingFunction(new MatchExact<Circle>);
+		Sensors["left"] -> SetMatchingFunction(new MatchExact<circleCenter>);
 
 		This.SetInitRandom(true);	// Start in random locations
 		//This.InitRandom = false;
@@ -99,13 +120,16 @@ class ShrewSimulation : public Simulation
 {
 	Group<Shrew> grpShrew;
 	Group<Circle> theCircle;
+	Group<circleCenter> theCircleCenter;
 
 public:
 	ShrewSimulation():
 	theCircle(1),
+	theCircleCenter(1),
 	grpShrew(1)
 	{
 		This.Add("Circle", This.theCircle);
+		This.Add("circleCenter", This.theCircleCenter);
 		This.Add("Shrews", This.grpShrew);
 	}
 };
