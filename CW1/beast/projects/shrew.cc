@@ -59,7 +59,7 @@ public:
 class Shrew : public Animat // Shrew is derived from Animat
 {
 public:
-	
+	int controlMode = 1;
 	Shrew()
 	{	
 		This.Add("lineSensor", ProximitySensor<Shrew>(2 * PI, 300.0, -PI/20));
@@ -79,8 +79,22 @@ public:
 		
 	}
 
+	void changeControlMode(int controlMode) {
+		This.controlMode = controlMode;
+	}
+
 	virtual void Control()
 	{
+		if(This.controlMode == 1) {
+			Mode1();
+		} else {
+			Mode2();
+		}
+
+	}
+	
+	void Mode1() {
+		// write mode 1
 		double right_a = This.Sensors["right"]->GetOutput();
 		double left_a = This.Sensors["left"]->GetOutput();
 		//double c = This.Sensors["line"] ->GetOutput();
@@ -94,8 +108,10 @@ public:
 		// 	inRange = false;
 		// }
 		// if (inRange){
-		This.Controls["left"] = -left_a;
-		This.Controls["right"] = -right_a;
+		// This.Controls["left"] = -left_a;
+		// This.Controls["right"] = -right_a;
+		This.Controls["left"] = 0.5;
+		This.Controls["right"] = 0.5;
 		//cout << b << endl;
 		// }else{
 		// 	This.Controls["left"] = 0.0;
@@ -107,10 +123,10 @@ public:
 		// This.Controls["right"] = This.Sensors["left"]->GetOutput();
 		
 		//cout << c << endl;
-		
-
 	}
-	virtual void Controll(){
+
+	void Mode2() {
+		// write mode 2
 		This.Controls["left"] = 0;
 		This.Controls["right"] = 0;
 	}
@@ -191,8 +207,8 @@ public:
 	{
 		grpShrew[0] -> SetStartLocation(Vector2D(500, 300));
 		grpShrew[1] -> SetStartLocation(Vector2D(400, 300));
-		grpShrew[0] -> Controll();
-		grpShrew[1] -> Controll();
+		grpShrew[1] -> changeControlMode(2);
+		grpShrew[0] -> changeControlMode(1);
 		This.Add("Circle", This.theCircle);
 		This.Add("circleCenter", This.theCircleCenter);
 		This.Add("Shrews", This.grpShrew);
