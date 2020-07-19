@@ -159,14 +159,15 @@ public:
 		This.Radius = 28.0;
 		SetMinSpeed(0.0);
 		This.InitFFN(4);
-		// This.lines = This.Sensors["lineSensor"] ->GetOutput();
-		// cout << lines << endl;
+		
 	}
+
 	// double lines = This.Sensors["lineSensor"] ->GetOutput();
 	// void setLines()
 	virtual void getLines(){
-		lines = This.Sensors["lineSensor"] ->GetOutput();
-
+		//lines = This.Sensors["lineSensor"] ->GetOutput();
+		This.lines = This.Sensors["lineSensor"] ->GetOutput();
+		cout << lines << endl;
 		//EvoFFNAnimat::getLines();
 	}
 	virtual float GetFitness()const
