@@ -59,13 +59,15 @@ public:
 class Shrew : public Animat // Shrew is derived from Animat
 {
 public:
-	int controlMode = 1;
+	int controlMode;
 	Shrew()
 	{	
+		
 		This.Add("lineSensor", ProximitySensor<Shrew>(2 * PI, 300.0, -PI/20));
 		Sensors["lineSensor"] -> SetMatchingFunction(new MatchExact<circleCenter>);
 		This.Add("left", ProximitySensor<Shrew>(PI/5, 200.0, -PI/20));
 		This.Add("right", ProximitySensor<Shrew>(PI/5, 200.0, PI/20));
+		
 		Sensors["left"] -> SetMatchingFunction(new MatchExact<Shrew>);
 		Sensors["right"] -> SetMatchingFunction(new MatchExact<Shrew>);
 
@@ -110,8 +112,8 @@ public:
 		// if (inRange){
 		// This.Controls["left"] = -left_a;
 		// This.Controls["right"] = -right_a;
-		This.Controls["left"] = 0.5;
-		This.Controls["right"] = 0.5;
+		This.Controls["left"] = 0;
+		This.Controls["right"] = 0;
 		//cout << b << endl;
 		// }else{
 		// 	This.Controls["left"] = 0.0;
@@ -206,9 +208,11 @@ public:
 	grpShrew(2)
 	{
 		grpShrew[0] -> SetStartLocation(Vector2D(500, 300));
-		grpShrew[1] -> SetStartLocation(Vector2D(400, 300));
+		grpShrew[1] -> SetStartLocation(Vector2D(300, 300));
 		grpShrew[1] -> changeControlMode(2);
 		grpShrew[0] -> changeControlMode(1);
+		grpShrew[0] -> Add("left", ProximitySensor<Shrew>(PI/5, 200.0, -(21 * PI)/20));
+		grpShrew[0] -> Add("right", ProximitySensor<Shrew>(PI/5, 200.0, (21 * PI)/20));
 		This.Add("Circle", This.theCircle);
 		This.Add("circleCenter", This.theCircleCenter);
 		This.Add("Shrews", This.grpShrew);
