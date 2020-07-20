@@ -50,12 +50,6 @@ public:
 		This.Location = GetLocation();
 	}
 	virtual ~circleCenter(){}
-
-	// When a Cheese is Eaten, it reappears in a random location.
-	// void Eaten()
-	// {
-	// 	This.Location = This.MyWorld->RandomLocation();
-	// }
 };
 
 class EvoMouses : public EvoFFNAnimat
@@ -69,16 +63,13 @@ public:
 		//Sensors["lineSensor"] -> SetMatchingFunction(new MatchExact<circleCenter>);
 		This.Add("left", ProximitySensor<EvoMouses>(PI/5, 200.0, -PI/20));
 		This.Add("right", ProximitySensor<EvoMouses>(PI/5, 200.0, PI/20));
-		
-		// Sensors["left"] -> SetMatchingFunction(new MatchExact<EvoMouses>);
-		// Sensors["right"] -> SetMatchingFunction(new MatchExact<EvoMouses>);
 
 		//This.SetInitRandom(true);	// Start in random locations
 		This.InitRandom = false;
 		This.SetStartLocation(Vector2D(500, 300));
 		This.Radius = 28.0;
 		SetMinSpeed(0.0);
-		This.InitFFN(4);
+		This.InitFFN(5);
 
 	}
 
