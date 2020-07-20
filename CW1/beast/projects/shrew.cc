@@ -58,92 +58,11 @@ public:
 	// }
 };
 
-// class Shrew : public Animat // Shrew is derived from Animat
-// {
-// public:
-// 	int controlMode;
-// 	Shrew()
-// 	{	
-		
-// 		This.Add("lineSensor", ProximitySensor<Shrew>(2 * PI, 300.0, -PI/20));
-// 		Sensors["lineSensor"] -> SetMatchingFunction(new MatchExact<circleCenter>);
-// 		This.Add("left", ProximitySensor<Shrew>(PI/5, 200.0, -PI/20));
-// 		This.Add("right", ProximitySensor<Shrew>(PI/5, 200.0, PI/20));
-		
-// 		Sensors["left"] -> SetMatchingFunction(new MatchExact<Shrew>);
-// 		Sensors["right"] -> SetMatchingFunction(new MatchExact<Shrew>);
-
-// 		//This.SetInitRandom(true);	// Start in random locations
-// 		This.InitRandom = false;
-// 		This.Radius = 28.0;			// Shrews are a little bigger than usual
-// 		SetMinSpeed(0.0);
-// 	}
-	
-// 	virtual ~Shrew(){
-		
-// 	}
-
-// 	void changeControlMode(int controlMode) {
-// 		This.controlMode = controlMode;
-// 	}
-
-// 	virtual void Control()
-// 	{
-// 		if(This.controlMode == 1) {
-// 			Mode1();
-// 		} else {
-// 			Mode2();
-// 		}
-
-// 	}
-	
-// 	void Mode1() {
-// 		// write mode 1
-// 		double right_a = This.Sensors["right"]->GetOutput();
-// 		double left_a = This.Sensors["left"]->GetOutput();
-// 		//double line = This.Sensors["line"] ->GetOutput();
-// 		//bool inRange = true;
-// 		//double num = rand()/double(RAND_MAX);
-// 		//cout << num << endl;
-
-// 		// if ((c >= 22) && (c <= 29)){
-// 		// 	inRange = true;
-// 		// }else{
-// 		// 	inRange = false;
-// 		// }
-// 		// if (inRange){
-// 		// This.Controls["left"] = -left_a;
-// 		// This.Controls["right"] = -right_a;
-// 		This.Controls["left"] = -right_a;
-// 		This.Controls["right"] = -left_a;
-// 		//cout << b << endl;
-// 		// }else{
-// 		// 	This.Controls["left"] = 0.0;
-// 		// 	This.Controls["right"] = 0.5;
-// 		// 	//sleep(1);
-// 		// }
-
-// 		// This.Controls["left"] = This.Sensors["right"]->GetOutput();
-// 		// This.Controls["right"] = This.Sensors["left"]->GetOutput();
-		
-// 		//cout << c << endl;
-// 	}
-
-// 	void Mode2() {
-// 		// write mode 2
-// 		//double line = This.Sensors["line"] ->GetOutput();
-// 		double num = rand()/double(RAND_MAX);
-// 		double num_plus = rand()/double(RAND_MAX);
-// 		This.Controls["left"] = num;
-// 		This.Controls["right"] = num_plus;
-		
-// 	}
-// };
-
 class EvoMouses : public EvoFFNAnimat
 {
 public:
 	//double lines;
+	bool inRange = true;
 	EvoMouses():lines(0)
 	{
 		This.Add("lineSensor", ProximitySensor<circleCenter>(2 * PI, 200.0f, -PI));
@@ -151,27 +70,27 @@ public:
 		This.Add("left", ProximitySensor<EvoMouses>(PI/5, 200.0, -PI/20));
 		This.Add("right", ProximitySensor<EvoMouses>(PI/5, 200.0, PI/20));
 		
-		Sensors["left"] -> SetMatchingFunction(new MatchExact<EvoMouses>);
-		Sensors["right"] -> SetMatchingFunction(new MatchExact<EvoMouses>);
+		// Sensors["left"] -> SetMatchingFunction(new MatchExact<EvoMouses>);
+		// Sensors["right"] -> SetMatchingFunction(new MatchExact<EvoMouses>);
 
 		//This.SetInitRandom(true);	// Start in random locations
-		This.InitRandom = true;
+		This.InitRandom = false;
+		This.SetStartLocation(Vector2D(500, 300));
 		This.Radius = 28.0;
 		SetMinSpeed(0.0);
 		This.InitFFN(4);
 
 	}
 
-	// double lines = This.Sensors["lineSensor"] ->GetOutput();
-	// void setLines()
-	virtual void getLines(){
-		//lines = This.Sensors["lineSensor"] ->GetOutput();
-		
-		//EvoFFNAnimat::getLines();
-	}
 	virtual void Control(){
 		This.lines = This.Sensors["lineSensor"] ->GetOutput();
+		if(This.lines < 0.015){
+			inRange = false;
+		}
 		cout << This.lines  << endl;
+		// This.Controls["left"] = 0;
+		// This.Controls["right"] = 0;
+		
 		EvoFFNAnimat::Control();
 	}
 	virtual float GetFitness()const
@@ -179,7 +98,7 @@ public:
 		//double lines = setLine();
 		//cout << This.lines << endl;
 		// double right_a = This.Sensors["right"]->GetOutput();
-		if (This.lines  > 0.015){
+		if (inRange){
 			return 1.0;
 		}
 		else{
@@ -214,19 +133,19 @@ class ShrewSimulation : public Simulation
 public:
 	ShrewSimulation():
 	theGA(0.7f, 0.05f),
-	theMice(2, theGA),
+	theMice(1, theGA),
 	theCircle(1),
 	theCircleCenter(1)
 	//grpShrew_opponent(1),
 	// grpShrew(2)
 	{
 		This.Add("Mice", This.theMice);
-		theMice[0] -> SetStartLocation(Vector2D(500, 300));
-		theMice[1] -> SetStartLocation(Vector2D(300, 300));
+		// theMice[0] -> SetStartLocation(Vector2D(500, 300));
+		//theMice[1] -> SetStartLocation(Vector2D(300, 300));
 		// grpShrew[1] -> changeControlMode(2);
 		// grpShrew[0] -> changeControlMode(1);
-		theMice[0] -> Add("left", ProximitySensor<EvoMouses>(PI/5, 200.0, -(21 * PI)/20));
-		theMice[0] -> Add("right", ProximitySensor<EvoMouses>(PI/5, 200.0, (21 * PI)/20));
+		// theMice[0] -> Add("left", ProximitySensor<EvoMouses>(PI/5, 200.0, -(21 * PI)/20));
+		// theMice[0] -> Add("right", ProximitySensor<EvoMouses>(PI/5, 200.0, (21 * PI)/20));
 		This.Add("Circle", This.theCircle);
 		This.Add("circleCenter", This.theCircleCenter);
 		
