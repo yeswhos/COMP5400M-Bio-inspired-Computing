@@ -43,7 +43,7 @@ public:
 	circleCenter()
 	{
 		
-		This.Radius = 1.1f;							 // Cheeses are quite small
+		This.Radius = 3.1f;							 // Cheeses are quite small
 		This.SetColour(ColourPalette[COLOUR_WHITE]);// Cheeses are yellow
 		//This.InitRandom = true;						 // Cheases are scattered
 		SetLocation(400, 300);
@@ -144,10 +144,10 @@ class EvoMouses : public EvoFFNAnimat
 {
 public:
 	//double lines;
-	EvoMouses()
+	EvoMouses():lines(0)
 	{
-		This.Add("lineSensor", ProximitySensor<EvoMouses>(2 * PI, 500.0f, -PI));
-		Sensors["lineSensor"] -> SetMatchingFunction(new MatchExact<circleCenter>);
+		This.Add("lineSensor", ProximitySensor<circleCenter>(2 * PI, 200.0f, -PI));
+		//Sensors["lineSensor"] -> SetMatchingFunction(new MatchExact<circleCenter>);
 		This.Add("left", ProximitySensor<EvoMouses>(PI/5, 200.0, -PI/20));
 		This.Add("right", ProximitySensor<EvoMouses>(PI/5, 200.0, PI/20));
 		
@@ -155,31 +155,35 @@ public:
 		Sensors["right"] -> SetMatchingFunction(new MatchExact<EvoMouses>);
 
 		//This.SetInitRandom(true);	// Start in random locations
-		This.InitRandom = false;
+		This.InitRandom = true;
 		This.Radius = 28.0;
 		SetMinSpeed(0.0);
 		This.InitFFN(4);
-		
+
 	}
 
 	// double lines = This.Sensors["lineSensor"] ->GetOutput();
 	// void setLines()
 	virtual void getLines(){
 		//lines = This.Sensors["lineSensor"] ->GetOutput();
-		This.lines = This.Sensors["lineSensor"] ->GetOutput();
-		cout << lines << endl;
+		
 		//EvoFFNAnimat::getLines();
+	}
+	virtual void Control(){
+		This.lines = This.Sensors["lineSensor"] ->GetOutput();
+		cout << This.lines  << endl;
+		EvoFFNAnimat::Control();
 	}
 	virtual float GetFitness()const
 	{
 		//double lines = setLine();
-		cout << This.lines << endl;
+		//cout << This.lines << endl;
 		// double right_a = This.Sensors["right"]->GetOutput();
-		if (lines < 200.0f){
-			return 0.0;
+		if (This.lines  > 0.015){
+			return 1.0;
 		}
 		else{
-			return 1.0;
+			return 0.0;
 		}
 	}
 
