@@ -84,7 +84,7 @@ public:
 
 	virtual void Control(){
 		This.lines = This.Sensors["lineSensor"] ->GetOutput();
-		if(This.lines < 0.015){
+		if(This.lines < 0.015 && This.lines != 0){
 			inRange = false;
 		}
 		cout << This.lines  << endl;
@@ -133,7 +133,7 @@ class ShrewSimulation : public Simulation
 public:
 	ShrewSimulation():
 	theGA(0.7f, 0.05f),
-	theMice(1, theGA),
+	theMice(2, theGA),
 	theCircle(1),
 	theCircleCenter(1)
 	//grpShrew_opponent(1),
@@ -141,7 +141,8 @@ public:
 	{
 		This.Add("Mice", This.theMice);
 		// theMice[0] -> SetStartLocation(Vector2D(500, 300));
-		//theMice[1] -> SetStartLocation(Vector2D(300, 300));
+		theMice[1] -> SetStartLocation(Vector2D(200, 300));
+		theMice[1] -> SetStartOrientation(PI);
 		// grpShrew[1] -> changeControlMode(2);
 		// grpShrew[0] -> changeControlMode(1);
 		// theMice[0] -> Add("left", ProximitySensor<EvoMouses>(PI/5, 200.0, -(21 * PI)/20));
