@@ -14,6 +14,8 @@
 using namespace std;
 using namespace BEAST;
 
+bool tes;
+
 // For more information on this file, take a look at Tutorial 1 in the
 // BEAST documentation.
 class Circle : public WorldObject
@@ -57,6 +59,8 @@ class EvoMouses : public EvoFFNAnimat
 public:
 	//double lines;
 	bool inRange = true;
+	int counter = 0;
+	EvoMouses *enermy;
 	EvoMouses():lines(0)
 	{
 		This.Add("lineSensor", ProximitySensor<circleCenter>(2 * PI, 200.0f, -PI));
@@ -73,28 +77,56 @@ public:
 
 	}
 
+	void setEnermy(EvoMouses *enermy) {
+		This.enermy = enermy;
+	}
+
 	virtual void Control(){
 		This.lines = This.Sensors["lineSensor"] ->GetOutput();
 		if(This.lines < 0.015 && This.lines != 0){
 			inRange = false;
 		}
-		cout << This.lines  << endl;
+		//cout << This.lines  << endl;
 		// This.Controls["left"] = 0;
 		// This.Controls["right"] = 0;
 		
 		EvoFFNAnimat::Control();
 	}
+
+	void OnCollision(WorldObject* obj){
+		if (inRange == false){
+			counter++;
+		}
+		//setEnermy(enermy);
+		FFNAnimat::OnCollision(obj);
+	}
+
 	virtual float GetFitness()const
 	{
 		//double lines = setLine();
 		//cout << This.lines << endl;
 		// double right_a = This.Sensors["right"]->GetOutput();
-		if (inRange){
-			return 1.0;
-		}
-		else{
-			return 0.0;
-		}
+		// cout << tes << endl;
+		// cout << "-----" << endl;
+		// if (inRange){
+		// 	return 1.0;
+		// }
+		// else{
+		// 	return 0.0;
+		// }
+		// int score;
+		// if (counter == 0){
+		// 	score = 1;
+		// 	return score;
+		// }else{
+		// 	float score = 1 / counter;
+		// 	cout << score << endl;
+		// 	return score;
+		// }
+
+		int score = enermy -> counter;
+		float fitness = score - This.counter;
+		return fitness;
 	}
 
 	// Overloading the ToString method allows us to output a small amount of
@@ -116,8 +148,7 @@ class ShrewSimulation : public Simulation
 {
 	GeneticAlgorithm<EvoMouses> theGA;
 	Population<EvoMouses> theMice;
-	// Group<Shrew> grpShrew;
-	//Group<Shrew_opponent> grpShrew_opponent;
+	// Group<EvoMouses> grpShrew;
 	Group<Circle> theCircle;
 	Group<circleCenter> theCircleCenter;
 
@@ -127,17 +158,17 @@ public:
 	theMice(2, theGA),
 	theCircle(1),
 	theCircleCenter(1)
-	//grpShrew_opponent(1),
-	// grpShrew(2)
 	{
-		This.Add("Mice", This.theMice);
-		// theMice[0] -> SetStartLocation(Vector2D(500, 300));
-		theMice[1] -> SetStartLocation(Vector2D(200, 300));
-		theMice[1] -> SetStartOrientation(PI);
+		This.Add("EvoMouses", This.theMice);
+		//theMice[0] -> SetLocation(500, 300);
+		//theMice[1] -> SetStartOrientation(PI);
 		// grpShrew[1] -> changeControlMode(2);
 		// grpShrew[0] -> changeControlMode(1);
 		// theMice[0] -> Add("left", ProximitySensor<EvoMouses>(PI/5, 200.0, -(21 * PI)/20));
 		// theMice[0] -> Add("right", ProximitySensor<EvoMouses>(PI/5, 200.0, (21 * PI)/20));
+		// tes = theMice[1] -> inRange;
+		// cout << tes << endl;
+		
 		This.Add("Circle", This.theCircle);
 		This.Add("circleCenter", This.theCircleCenter);
 		
