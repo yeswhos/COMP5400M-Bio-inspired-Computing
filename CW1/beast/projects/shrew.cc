@@ -134,7 +134,6 @@ public:
 	// mouse is clicked on.
 	virtual string ToString()const
 	{
-		
 		ostringstream out;
 		out << " Power used: " << This.PowerUsed;
 		return out.str();
@@ -168,7 +167,7 @@ public:
 		// theMice[0] -> Add("right", ProximitySensor<EvoMouses>(PI/5, 200.0, (21 * PI)/20));
 		// tes = theMice[1] -> inRange;
 		// cout << tes << endl;
-		
+		//theMice.setEnermy()
 		This.Add("Circle", This.theCircle);
 		This.Add("circleCenter", This.theCircleCenter);
 		
