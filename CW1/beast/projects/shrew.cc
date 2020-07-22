@@ -14,7 +14,7 @@
 using namespace std;
 using namespace BEAST;
 
-bool tes;
+list<int> l1;
 
 // For more information on this file, take a look at Tutorial 1 in the
 // BEAST documentation.
@@ -60,7 +60,8 @@ public:
 	//double lines;
 	bool inRange = true;
 	int counter = 0;
-	EvoMouses *enermy;
+	
+	//EvoMouses *enermy;
 	EvoMouses():lines(0)
 	{
 		This.Add("lineSensor", ProximitySensor<circleCenter>(2 * PI, 200.0f, -PI));
@@ -77,9 +78,9 @@ public:
 
 	}
 
-	void setEnermy(EvoMouses *enermy) {
-		This.enermy = enermy;
-	}
+	// void setEnermy(EvoMouses *enermy) {
+	// 	This.enermy = enermy;
+	// }
 
 	virtual void Control(){
 		This.lines = This.Sensors["lineSensor"] ->GetOutput();
@@ -96,24 +97,27 @@ public:
 	void OnCollision(WorldObject* obj){
 		if (inRange == false){
 			counter++;
+			This.SetLocation(Vector2D(500, 300));
 		}
+		l1.push_back(counter);
+		
 		//setEnermy(enermy);
 		FFNAnimat::OnCollision(obj);
 	}
 
 	virtual float GetFitness()const
 	{
-		//double lines = setLine();
-		//cout << This.lines << endl;
-		// double right_a = This.Sensors["right"]->GetOutput();
-		// cout << tes << endl;
-		// cout << "-----" << endl;
-		// if (inRange){
-		// 	return 1.0;
-		// }
-		// else{
-		// 	return 0.0;
-		// }
+		//cout << l1.empty() << endl;
+		cout << "-------------" << endl;
+		// int c = l1.front();
+		int c = l1.size();
+		cout << c << endl;
+		if (inRange){
+			return 1.0;
+		}
+		else{
+			return 0.0;
+		}
 		// int score;
 		// if (counter == 0){
 		// 	score = 1;
@@ -124,9 +128,9 @@ public:
 		// 	return score;
 		// }
 
-		int score = enermy -> counter;
-		float fitness = score - This.counter;
-		return fitness;
+		// int score = enermy -> counter;
+		// float fitness = score - This.counter;
+		// return fitness;
 	}
 
 	// Overloading the ToString method allows us to output a small amount of
