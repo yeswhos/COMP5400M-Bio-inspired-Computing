@@ -14,8 +14,6 @@
 using namespace std;
 using namespace BEAST;
 
-list<int> l1;
-
 // For more information on this file, take a look at Tutorial 1 in the
 // BEAST documentation.
 class Circle : public WorldObject
@@ -60,6 +58,7 @@ public:
 	//double lines;
 	bool inRange = true;
 	int counter = 0;
+	int count = 0;
 	
 	//EvoMouses *enermy;
 	EvoMouses():lines(0)
@@ -98,20 +97,35 @@ public:
 		if (inRange == false){
 			counter++;
 			This.SetLocation(Vector2D(500, 300));
+			inRange = true;
 		}
-		l1.push_back(counter);
-		
+		if(count == 2){
+			ofstream f("/home/beast/COMP5400M-Bio-inspired-Computing/CW1/beast/MSc/log.txt", ios::trunc);
+			count = 0;
+		}
+		ofstream out("/home/beast/COMP5400M-Bio-inspired-Computing/CW1/beast/MSc/log.txt", ios::app);
+		out << counter << endl;
+		count++;
+
+		out.close();
 		//setEnermy(enermy);
 		FFNAnimat::OnCollision(obj);
 	}
 
 	virtual float GetFitness()const
-	{
-		//cout << l1.empty() << endl;
-		cout << "-------------" << endl;
-		// int c = l1.front();
-		int c = l1.size();
-		cout << c << endl;
+	{	
+		// count++;
+
+		fstream f;
+		f.open("/home/beast/COMP5400M-Bio-inspired-Computing/CW1/beast/MSc/log.txt", ios::in);
+		char line[128];
+		f.getline(line, 128);
+		cout << line << endl;
+		// if(count == 2){
+		// 	ofstream f("/home/beast/COMP5400M-Bio-inspired-Computing/CW1/beast/MSc/log.txt", ios::trunc);
+		// 	count = 0;
+		// }
+		//cout << counter << endl;
 		if (inRange){
 			return 1.0;
 		}
