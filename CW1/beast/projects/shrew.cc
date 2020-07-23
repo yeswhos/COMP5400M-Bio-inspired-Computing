@@ -109,9 +109,9 @@ public:
 	{	
 		int score = 0;
 		if (counterB == 0){
-			score = 1;
+			score = 0;
 		}else{
-			score = counterB;
+			score = 5 * counterB;
 		}
 		counterB = 0;
 		return score;
