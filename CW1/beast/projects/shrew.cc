@@ -107,13 +107,14 @@ public:
 
 	virtual float GetFitness()const
 	{	
-		cout << counterB << endl;
-		if (inRange){
-			return 1.0;
+		int score = 0;
+		if (counterB == 0){
+			score = 1;
+		}else{
+			score = counterB;
 		}
-		else{
-			return 0.0;
-		}
+		counterB = 0;
+		return score;
 		// int score;
 		// if (counter == 0){
 		// 	score = 1;
@@ -196,13 +197,22 @@ public:
 
 	virtual float GetFitness()const
 	{	
-		cout << counterA << endl;
-		if (inRange){
-			return 1.0;
+		// cout << "------------" << endl;
+		// cout << counterA << endl;
+		int score = 0;
+		if (counterA == 0){
+			score = 1;
+		}else{
+			score = counterA;
 		}
-		else{
-			return 0.0;
-		}
+		counterA = 0;
+		return score;
+		// if (inRange){
+		// 	return 1.0;
+		// }
+		// else{
+		// 	return 0.0;
+		// }
 		// int score;
 		// if (counter == 0){
 		// 	score = 1;
@@ -246,8 +256,8 @@ public:
 	ShrewSimulation():
 	gaEvo(0.7f, 0.05f),
 	gaEvoEnemy(0.7f, 0.05f),
-	popEvo(5, gaEvo),
-	popEvoEnemy(5, gaEvoEnemy),
+	popEvo(2, gaEvo),
+	popEvoEnemy(2, gaEvoEnemy),
 	theCircle(1),
 	theCircleCenter(1)
 	{
@@ -257,7 +267,7 @@ public:
 		This.gaEvoEnemy.SetParameter(GA_TOURNAMENT_SIZE, 1);
 		popEvo.SetTeamSize(1);
 		popEvoEnemy.SetTeamSize(1);
-		SetAssessments(5);
+		SetAssessments(2);
 		This.Add("EvoMouses", This.popEvo);
 		This.Add("EvoMousesEnemy", This.popEvoEnemy);
 		
