@@ -34,26 +34,6 @@ algorithm
 drawable.h
 ../libs/drawable.h
 
-../libs/bacteria.h
-sstream
--
-vector
--
-distribution.h
-../libs/distribution.h
-bacterium.h
-../libs/bacterium.h
-
-../libs/bacterium.h
-animat.h
-../libs/animat.h
-distribution.h
-../libs/distribution.h
-utilities.h
-../libs/utilities.h
-list
--
-
 ../libs/beast.h
 vector
 -
@@ -71,12 +51,6 @@ drawable.h
 ../libs/colours.h
 random.h
 ../libs/random.h
-
-../libs/distribution.h
-sensor.h
-../libs/sensor.h
-world.h
-../libs/world.h
 
 ../libs/drawable.h
 windows.h
@@ -553,14 +527,6 @@ beast.h
 /home/beast/COMP5400M-Bio-inspired-Computing/CW1/beast/projects/beast.h
 simulation.h
 /home/beast/COMP5400M-Bio-inspired-Computing/CW1/beast/projects/simulation.h
-bacteria.h
-/home/beast/COMP5400M-Bio-inspired-Computing/CW1/beast/projects/bacteria.h
-cstdlib
--
-unistd.h
--
-neuralanimat.h
-/home/beast/COMP5400M-Bio-inspired-Computing/CW1/beast/projects/neuralanimat.h
 population.h
 /home/beast/COMP5400M-Bio-inspired-Computing/CW1/beast/projects/population.h
 

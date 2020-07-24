@@ -4,12 +4,9 @@
 projects/CMakeFiles/demos.dir/demos.cc.o
  ../libs/animat.h
  ../libs/animatmonitor.h
- ../libs/bacteria.h
- ../libs/bacterium.h
  ../libs/beast.h
  ../libs/collisions.h
  ../libs/colours.h
- ../libs/distribution.h
  ../libs/drawable.h
  ../libs/dynamicalnet.h
  ../libs/feedforwardnet.h

@@ -3,12 +3,9 @@
 
 projects/CMakeFiles/demos.dir/demos.cc.o: ../libs/animat.h
 projects/CMakeFiles/demos.dir/demos.cc.o: ../libs/animatmonitor.h
-projects/CMakeFiles/demos.dir/demos.cc.o: ../libs/bacteria.h
-projects/CMakeFiles/demos.dir/demos.cc.o: ../libs/bacterium.h
 projects/CMakeFiles/demos.dir/demos.cc.o: ../libs/beast.h
 projects/CMakeFiles/demos.dir/demos.cc.o: ../libs/collisions.h
 projects/CMakeFiles/demos.dir/demos.cc.o: ../libs/colours.h
-projects/CMakeFiles/demos.dir/demos.cc.o: ../libs/distribution.h
 projects/CMakeFiles/demos.dir/demos.cc.o: ../libs/drawable.h
 projects/CMakeFiles/demos.dir/demos.cc.o: ../libs/dynamicalnet.h
 projects/CMakeFiles/demos.dir/demos.cc.o: ../libs/feedforwardnet.h

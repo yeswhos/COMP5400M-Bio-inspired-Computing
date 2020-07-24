@@ -5,10 +5,6 @@
 #include "sensorbase.h"
 #include "beast.h"
 #include "simulation.h"
-#include "bacteria.h"
-#include<cstdlib>
-#include <unistd.h>
-#include "neuralanimat.h"
 #include "population.h"
 
 using namespace std;
@@ -16,8 +12,8 @@ using namespace BEAST;
 
 int counterA = 0;
 int counterB = 0;
-bool inRangeA = True;
-bool inRangeB = True;
+bool inRangeA = true;
+bool inRangeB = true;
 // For more information on this file, take a look at Tutorial 1 in the
 // BEAST documentation.
 class Circle : public WorldObject
@@ -101,9 +97,13 @@ public:
 		if (inRangeA == false){
 			counterA++;
 			This.SetLocation(Vector2D(500, 300));
+			This.SetOrientation(PI);
+			//This.SetStartOrientation(PI);
 			inRangeA = true;
 		}else if(inRangeB == false){
-			This.SetLocation(Vector2D(300, 300));
+			This.SetLocation(Vector2D(500, 300));
+			This.SetOrientation(PI);
+			//This.SetStartOrientation(PI);
 			inRangeA = true;
 		}
 		//setEnermy(enermy);
@@ -182,9 +182,11 @@ public:
 		if (inRangeB == false){
 			counterB++;
 			This.SetLocation(Vector2D(300, 300));
+			This.SetOrientation(0.0);
 			inRangeB = true;
 		}else if(inRangeA == false){
 			This.SetLocation(Vector2D(300, 300));
+			This.SetOrientation(0.0);
 			inRangeB = true;
 		}
 		//setEnermy(enermy);
