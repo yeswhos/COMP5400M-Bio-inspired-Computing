@@ -23,18 +23,18 @@
 //#include "AntGUI/ColourSortPanel.cc"
 
 BEGIN_SIMULATION_TABLE
-	ADD_SIMULATION("Braitenberg", BraitenbergSimulation)
+	// ADD_SIMULATION("Braitenberg", BraitenbergSimulation)
 	ADD_SIMULATION("Shrews", ShrewSimulation)
-	ADD_SIMULATION("Mice", MouseSimulation)
-	ADD_SIMULATION("Chase", ChaseSimulation)
+	// ADD_SIMULATION("Mice", MouseSimulation)
+	// ADD_SIMULATION("Chase", ChaseSimulation)
 	//ADD_SIMULATION("Signal", SignalSimulation)
 	//ADD_SIMULATION("Pacman", PacmanSimulation)
-	ADD_SIMULATION("LFCluster - prototype", LFClusterSimulation);
-	ADD_SIMULATION("LFSort - prototype", LFSortSimulation);
-	ADD_SIMULATION("KLSGraphPartition - prototype", GraphSimulation);
-	//ADD_SIMULATION("Initial GUI with LFSort", LFSortGUI);
-	ADD_SIMULATION("Ant Algorithm GUI", AntAlgGUISimulation);
-	ADD_SIMULATION("A Test of 3Dness", Test3DSim);
-  ADD_SIMULATION("Situated Sort", LFSortSituated);
+// 	ADD_SIMULATION("LFCluster - prototype", LFClusterSimulation);
+// 	ADD_SIMULATION("LFSort - prototype", LFSortSimulation);
+// 	ADD_SIMULATION("KLSGraphPartition - prototype", GraphSimulation);
+// 	//ADD_SIMULATION("Initial GUI with LFSort", LFSortGUI);
+// 	ADD_SIMULATION("Ant Algorithm GUI", AntAlgGUISimulation);
+// 	ADD_SIMULATION("A Test of 3Dness", Test3DSim);
+//   ADD_SIMULATION("Situated Sort", LFSortSituated);
 	
 END_SIMULATION_TABLE

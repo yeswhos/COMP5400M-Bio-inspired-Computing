@@ -16,6 +16,8 @@ using namespace BEAST;
 
 int counterA = 0;
 int counterB = 0;
+bool inRangeA = True;
+bool inRangeB = True;
 // For more information on this file, take a look at Tutorial 1 in the
 // BEAST documentation.
 class Circle : public WorldObject
@@ -86,7 +88,7 @@ public:
 	virtual void Control(){
 		This.lines = This.Sensors["lineSensor"] ->GetOutput();
 		if(This.lines < 0.015 && This.lines != 0){
-			inRange = false;
+			inRangeA = false;
 		}
 		//cout << This.lines  << endl;
 		// This.Controls["left"] = 0;
@@ -96,10 +98,10 @@ public:
 	}
 
 	void OnCollision(WorldObject* obj){
-		if (inRange == false){
+		if (inRangeA == false){
 			counterA++;
 			This.SetLocation(Vector2D(500, 300));
-			inRange = true;
+			inRangeA = true;
 		}
 		//setEnermy(enermy);
 		FFNAnimat::OnCollision(obj);
@@ -108,26 +110,13 @@ public:
 	virtual float GetFitness()const
 	{	
 		int score = 0;
-		if (counterB == 0){
+		if (counterA == 0){
 			score = 0;
 		}else{
-			score = 5 * counterB;
+			score = 1 / counterA;
 		}
 		counterB = 0;
 		return score;
-		// int score;
-		// if (counter == 0){
-		// 	score = 1;
-		// 	return score;
-		// }else{
-		// 	float score = 1 / counter;
-		// 	cout << score << endl;
-		// 	return score;
-		// }
-
-		// int score = enermy -> counter;
-		// float fitness = score - This.counter;
-		// return fitness;
 	}
 
 	// Overloading the ToString method allows us to output a small amount of
@@ -176,7 +165,7 @@ public:
 	virtual void Control(){
 		This.lines = This.Sensors["lineSensor"] ->GetOutput();
 		if(This.lines < 0.015 && This.lines != 0){
-			inRange = false;
+			inRangeB = false;
 		}
 		//cout << This.lines  << endl;
 		// This.Controls["left"] = 0;
@@ -186,10 +175,10 @@ public:
 	}
 
 	void OnCollision(WorldObject* obj){
-		if (inRange == false){
+		if (inRangeB == false){
 			counterB++;
 			This.SetLocation(Vector2D(300, 300));
-			inRange = true;
+			inRangeB = true;
 		}
 		//setEnermy(enermy);
 		FFNAnimat::OnCollision(obj);
@@ -201,9 +190,9 @@ public:
 		// cout << counterA << endl;
 		int score = 0;
 		if (counterA == 0){
-			score = 1;
+			score = 0.5;
 		}else{
-			score = counterA;
+			score = 2 * counterA;
 		}
 		counterA = 0;
 		return score;
