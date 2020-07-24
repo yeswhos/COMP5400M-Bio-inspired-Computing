@@ -6,6 +6,7 @@
 #include "beast.h"
 #include "simulation.h"
 #include "population.h"
+#include "neuralanimat.h"
 
 using namespace std;
 using namespace BEAST;
@@ -112,13 +113,21 @@ public:
 
 	virtual float GetFitness()const
 	{	
+		// float score = 0.0;
+		// if (counterA == 0){
+		// 	score = 1.0;
+		// }else{
+		// 	score = (float) 1 / counterA;
+		// }
+		// counterB = 0;
+		// return score;
 		int score = 0;
-		if (counterA == 0){
-			score = 0;
+		if (counterB == 0){
+			score = 1;
 		}else{
-			score = 1 / counterA;
+			score = counterB;
 		}
-		counterB = 0;
+		counterA = 0;
 		return score;
 	}
 
@@ -128,7 +137,7 @@ public:
 	virtual string ToString()const
 	{
 		ostringstream out;
-		// out << " Power used: " << This.PowerUsed;
+		//out << " Power used: " << This.PowerUsed;
 		out << "current fitness for defence" << GetFitness();
 		return out.str();
 	}
@@ -197,29 +206,22 @@ public:
 	{	
 		// cout << "------------" << endl;
 		// cout << counterA << endl;
+		// float score = 0.0;
+		// if (counterA == 0){
+		// 	score = 0.5;
+		// }else{
+		// 	score = (float) 5 * counterA;
+		// }
+		// counterA = 0;
+		// return score;
 		int score = 0;
 		if (counterA == 0){
-			score = 0.5;
+			score = 0;
 		}else{
-			score = 2 * counterA;
+			score = 5 * counterA;
 		}
-		counterA = 0;
+		counterB = 0;
 		return score;
-		// if (inRange){
-		// 	return 1.0;
-		// }
-		// else{
-		// 	return 0.0;
-		// }
-		// int score;
-		// if (counter == 0){
-		// 	score = 1;
-		// 	return score;
-		// }else{
-		// 	float score = 1 / counter;
-		// 	cout << score << endl;
-		// 	return score;
-		// }
 
 		// int score = enermy -> counter;
 		// float fitness = score - This.counter;
@@ -232,6 +234,7 @@ public:
 	virtual string ToString()const
 	{
 		ostringstream out;
+		//out << " Power used: " << This.PowerUsed;
 		out << "current fitness for attack" << GetFitness();
 		return out.str();
 	}
