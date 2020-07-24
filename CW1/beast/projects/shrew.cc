@@ -102,6 +102,9 @@ public:
 			counterA++;
 			This.SetLocation(Vector2D(500, 300));
 			inRangeA = true;
+		}else if(inRangeB == false){
+			This.SetLocation(Vector2D(300, 300));
+			inRangeA = true;
 		}
 		//setEnermy(enermy);
 		FFNAnimat::OnCollision(obj);
@@ -125,7 +128,8 @@ public:
 	virtual string ToString()const
 	{
 		ostringstream out;
-		out << " Power used: " << This.PowerUsed;
+		// out << " Power used: " << This.PowerUsed;
+		out << "current fitness for defence" << GetFitness();
 		return out.str();
 	}
 private:
@@ -179,6 +183,9 @@ public:
 			counterB++;
 			This.SetLocation(Vector2D(300, 300));
 			inRangeB = true;
+		}else if(inRangeA == false){
+			This.SetLocation(Vector2D(300, 300));
+			inRangeB = true;
 		}
 		//setEnermy(enermy);
 		FFNAnimat::OnCollision(obj);
@@ -223,7 +230,7 @@ public:
 	virtual string ToString()const
 	{
 		ostringstream out;
-		out << " Power used: " << This.PowerUsed;
+		out << "current fitness for attack" << GetFitness();
 		return out.str();
 	}
 private:
@@ -257,6 +264,7 @@ public:
 		popEvo.SetTeamSize(1);
 		popEvoEnemy.SetTeamSize(1);
 		SetAssessments(2);
+		// if(inRangeA == false || inRangeB)
 		This.Add("EvoMouses", This.popEvo);
 		This.Add("EvoMousesEnemy", This.popEvoEnemy);
 		
