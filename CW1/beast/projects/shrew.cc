@@ -15,6 +15,8 @@ int counterA = 0;
 int counterB = 0;
 bool inRangeA = true;
 bool inRangeB = true;
+bool temp = true;
+bool tempB = true;
 // For more information on this file, take a look at Tutorial 1 in the
 // BEAST documentation.
 class Circle : public WorldObject
@@ -57,11 +59,7 @@ class EvoMousesOpponent;
 class EvoMouses : public EvoFFNAnimat
 {
 public:
-	//double lines;
-	bool inRange = true;
-	int counter = 0;
-	
-	//EvoMouses *enermy;
+
 	EvoMouses():lines(0)
 	{
 		This.Add("lineSensor", ProximitySensor<circleCenter>(2 * PI, 200.0f, -PI));
@@ -86,6 +84,7 @@ public:
 		This.lines = This.Sensors["lineSensor"] ->GetOutput();
 		if(This.lines < 0.015 && This.lines != 0){
 			inRangeA = false;
+			temp = false;
 		}
 		if (inRangeA == false){
 			counterA++;
@@ -93,10 +92,11 @@ public:
 			This.SetOrientation(PI);
 			//This.SetStartOrientation(PI);
 			inRangeA = true;
-		}else if(inRangeB == false){
+		}else if(tempB == false){
 			This.SetLocation(Vector2D(500, 300));
 			This.SetOrientation(PI);
 			//This.SetStartOrientation(PI);
+			tempB = true;
 			inRangeA = true;
 		}
 		//cout << This.lines  << endl;
@@ -175,6 +175,7 @@ public:
 		This.lines = This.Sensors["lineSensor"] ->GetOutput();
 		if(This.lines < 0.015 && This.lines != 0){
 			inRangeB = false;
+			tempB = false;
 		}
 		//cout << This.lines  << endl;
 		// This.Controls["left"] = 0;
@@ -193,9 +194,10 @@ public:
 			counterB++;
 			reLocate();
 			inRangeB = true;
-		}else if(inRangeA == false){
+		}else if(temp == false){
 			reLocate();
-			//inRangeB = true;
+			temp = true;
+			inRangeB = true;
 		}
 		//setEnermy(enermy);
 		FFNAnimat::OnCollision(obj);
