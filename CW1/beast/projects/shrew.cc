@@ -87,14 +87,6 @@ public:
 		if(This.lines < 0.015 && This.lines != 0){
 			inRangeA = false;
 		}
-		//cout << This.lines  << endl;
-		// This.Controls["left"] = 0;
-		// This.Controls["right"] = 0;
-		
-		EvoFFNAnimat::Control();
-	}
-
-	void OnCollision(WorldObject* obj){
 		if (inRangeA == false){
 			counterA++;
 			This.SetLocation(Vector2D(500, 300));
@@ -107,27 +99,31 @@ public:
 			//This.SetStartOrientation(PI);
 			inRangeA = true;
 		}
-		//setEnermy(enermy);
-		FFNAnimat::OnCollision(obj);
+		//cout << This.lines  << endl;
+		// This.Controls["left"] = 0;
+		// This.Controls["right"] = 0;
+		
+		EvoFFNAnimat::Control();
 	}
+
+	// void OnCollision(WorldObject* obj){
+		
+	// 	//setEnermy(enermy);
+	// 	FFNAnimat::OnCollision(obj);
+	// }
 
 	virtual float GetFitness()const
 	{	
-		// float score = 0.0;
-		// if (counterA == 0){
-		// 	score = 1.0;
-		// }else{
-		// 	score = (float) 1 / counterA;
-		// }
-		// counterB = 0;
 		// return score;
-		int score = 0;
-		if (counterB == 0){
-			score = 1;
-		}else{
-			score = counterB;
-		}
+		float score = 0.0;
+		// if (counterB == 0){
+		// 	score = 1;
+		// }else{
+		// 	score = counterB;
+		// }
+		score = 5 * counterB - counterA;
 		counterA = 0;
+		cout << score << endl;
 		return score;
 	}
 
@@ -204,22 +200,14 @@ public:
 
 	virtual float GetFitness()const
 	{	
-		// cout << "------------" << endl;
-		// cout << counterA << endl;
-		// float score = 0.0;
+		float score = 0.0;
 		// if (counterA == 0){
-		// 	score = 0.5;
+		// 	score = 0;
 		// }else{
-		// 	score = (float) 5 * counterA;
+		// 	score = 5 * counterA;
 		// }
-		// counterA = 0;
-		// return score;
-		int score = 0;
-		if (counterA == 0){
-			score = 0;
-		}else{
-			score = 5 * counterA;
-		}
+		// counterB = 0;
+		score = 5 * counterA - counterB;
 		counterB = 0;
 		return score;
 
@@ -279,7 +267,7 @@ public:
 
 		//This.Add("Shrews", This.grpShrew);
 		//This.Add("Shrews_opponent", This.grpShrew_opponent);
-		//This.SetTimeSteps(200);
+		This.SetTimeSteps(500);
 	}
 };
 
