@@ -182,17 +182,20 @@ public:
 		
 		EvoFFNAnimat::Control();
 	}
+	
+	void reLocate(){
+		This.SetLocation(Vector2D(300, 300));
+		This.SetOrientation(0.0);
+	}
 
 	void OnCollision(WorldObject* obj){
 		if (inRangeB == false){
 			counterB++;
-			This.SetLocation(Vector2D(300, 300));
-			This.SetOrientation(0.0);
+			reLocate();
 			inRangeB = true;
 		}else if(inRangeA == false){
-			This.SetLocation(Vector2D(300, 300));
-			This.SetOrientation(0.0);
-			inRangeB = true;
+			reLocate();
+			//inRangeB = true;
 		}
 		//setEnermy(enermy);
 		FFNAnimat::OnCollision(obj);
