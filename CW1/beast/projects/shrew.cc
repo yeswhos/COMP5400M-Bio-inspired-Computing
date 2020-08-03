@@ -121,7 +121,10 @@ public:
 		// }else{
 		// 	score = counterB;
 		// }
-		score = 5 * counterB - counterA;
+		if((counterA == 0) && (counterB == 0)){
+			score = 0.2;
+		}
+		score = 1 / (5 * counterA + counterB);
 		counterA = 0;
 		cout << score << endl;
 		return score;
