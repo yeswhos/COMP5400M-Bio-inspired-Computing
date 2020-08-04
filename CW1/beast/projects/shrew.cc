@@ -121,10 +121,16 @@ public:
 		// }else{
 		// 	score = counterB;
 		// }
-		if((counterA == 0) && (counterB == 0)){
-			score = 0.2;
+		float midValue = 0.0;
+		if(counterB == 0){
+			midValue = 5;
+		}else{
+			midValue = 1 / counterB;
 		}
-		score = 1 / (5 * counterA + counterB);
+		score = 1 / (counterA + midValue);
+		if(score > 1){
+			score = 1;
+		}
 		counterA = 0;
 		cout << score << endl;
 		return score;
@@ -209,14 +215,18 @@ public:
 	virtual float GetFitness()const
 	{	
 		float score = 0.0;
-		// if (counterA == 0){
-		// 	score = 0;
-		// }else{
-		// 	score = 5 * counterA;
-		// }
-		// counterB = 0;
-		score = 5 * counterA - counterB;
+		float midValue = 0.0;
+		if(counterA == 0){
+			midValue = 5;
+		}else{
+			midValue = 1 / counterA;
+		}
+		score = 1 / (counterB + midValue);
+		if(score > 1){
+			score = 1;
+		}
 		counterB = 0;
+		cout << score << endl;
 		return score;
 
 		// int score = enermy -> counter;
