@@ -123,16 +123,16 @@ public:
 		// }
 		float midValue = 0.0;
 		if(counterB == 0){
-			midValue = 5;
+			midValue = 7;
 		}else{
-			midValue = 1 / counterB;
+			midValue = 1 / 5 * counterB;
 		}
-		score = 1 / (counterA + midValue);
+		score = 1 / (0.5 * counterA + midValue);
 		if(score > 1){
 			score = 1;
 		}
 		counterA = 0;
-		cout << score << endl;
+		//cout << score << endl;
 		return score;
 	}
 
@@ -226,7 +226,7 @@ public:
 			score = 1;
 		}
 		counterB = 0;
-		cout << score << endl;
+		//cout << score << endl;
 		return score;
 
 		// int score = enermy -> counter;
