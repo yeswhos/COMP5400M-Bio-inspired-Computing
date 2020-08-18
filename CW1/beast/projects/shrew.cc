@@ -60,8 +60,8 @@ public:
 	{
 		This.Add("lineSensor", ProximitySensor<circleCenter>(2 * PI, 200.0f, -PI));
 		//Sensors["lineSensor"] -> SetMatchingFunction(new MatchExact<circleCenter>);
-		This.Add("left", ProximitySensor<ZumoQueen>(PI/5, 200.0, -PI/20));
-		This.Add("right", ProximitySensor<ZumoQueen>(PI/5, 200.0, PI/20));
+		This.Add("left", ProximitySensor<ZumoQueen>(PI/4, 200.0, -PI/20));
+		This.Add("right", ProximitySensor<ZumoQueen>(PI/4, 200.0, PI/20));
 		This.SetStartOrientation(PI);
 		//This.SetInitRandom(true);	// Start in random locations
 		This.InitRandom = false;
@@ -159,14 +159,14 @@ public:
 	{
 		This.Add("lineSensor", ProximitySensor<circleCenter>(2 * PI, 200.0f, -PI));
 		//Sensors["lineSensor"] -> SetMatchingFunction(new MatchExact<circleCenter>);
-		This.Add("left", ProximitySensor<ZumoKing>(PI/5, 200.0, -PI/20));
-		This.Add("right", ProximitySensor<ZumoKing>(PI/5, 200.0, PI/20));
+		This.Add("left", ProximitySensor<ZumoKing>(PI/4, 200.0, -PI/20));
+		This.Add("right", ProximitySensor<ZumoKing>(PI/4, 200.0, PI/20));
 
 		//This.SetInitRandom(true);	// Start in random locations
 		This.InitRandom = false;
 		This.SetStartLocation(Vector2D(300, 300));
 		
-		This.Radius = 28.0;
+		This.Radius = 25.0;
 		SetMinSpeed(0.0);
 		This.InitFFN(5);
 

@@ -531,6 +531,8 @@ population.h
 /home/beast/COMP5400M-Bio-inspired-Computing/CW1/beast/projects/population.h
 neuralanimat.h
 /home/beast/COMP5400M-Bio-inspired-Computing/CW1/beast/projects/neuralanimat.h
+worldobject.h
+/home/beast/COMP5400M-Bio-inspired-Computing/CW1/beast/projects/worldobject.h
 
 /home/beast/COMP5400M-Bio-inspired-Computing/CW1/beast/projects/signal.cc
 neuralanimat.h
