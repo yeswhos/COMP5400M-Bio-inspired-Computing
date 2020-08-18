@@ -7,6 +7,7 @@
 #include "simulation.h"
 #include "population.h"
 #include "neuralanimat.h"
+#include "worldobject.h"
 
 using namespace std;
 using namespace BEAST;
@@ -25,19 +26,14 @@ public:
 	Circle()
 	{
 		
-		This.Radius = 200.0f;							 // Cheeses are quite small
-		This.SetColour(ColourPalette[COLOUR_BLACK]);// Cheeses are yellow
-		//This.InitRandom = true;						 // Cheases are scattered
+		This.Radius = 200.0f;							 
+		This.SetColour(ColourPalette[COLOUR_BLACK]);
+		//This.InitRandom = true;						
 		SetLocation(400, 300);
 		This.Location = GetLocation();
 	}
 	virtual ~Circle(){}
 
-	// When a Cheese is Eaten, it reappears in a random location.
-	// void Eaten()
-	// {
-	// 	This.Location = This.MyWorld->RandomLocation();
-	// }
 };
 
 class circleCenter : public WorldObject
@@ -55,22 +51,22 @@ public:
 	virtual ~circleCenter(){}
 };
 
-class EvoMousesOpponent;
-class EvoMouses : public EvoFFNAnimat
+class ZumoQueen;
+class ZumoKing : public EvoFFNAnimat
 {
 public:
 
-	EvoMouses():lines(0)
+	ZumoKing():lines(0)
 	{
 		This.Add("lineSensor", ProximitySensor<circleCenter>(2 * PI, 200.0f, -PI));
 		//Sensors["lineSensor"] -> SetMatchingFunction(new MatchExact<circleCenter>);
-		This.Add("left", ProximitySensor<EvoMousesOpponent>(PI/5, 200.0, -PI/20));
-		This.Add("right", ProximitySensor<EvoMousesOpponent>(PI/5, 200.0, PI/20));
+		This.Add("left", ProximitySensor<ZumoQueen>(PI/5, 200.0, -PI/20));
+		This.Add("right", ProximitySensor<ZumoQueen>(PI/5, 200.0, PI/20));
 		This.SetStartOrientation(PI);
 		//This.SetInitRandom(true);	// Start in random locations
 		This.InitRandom = false;
 		This.SetStartLocation(Vector2D(500, 300));
-		This.Radius = 28.0;
+		This.Radius = 25.0;
 		SetMinSpeed(0.0);
 		This.InitFFN(5);
 
@@ -151,7 +147,7 @@ private:
 
 };
 
-class EvoMousesOpponent : public EvoFFNAnimat
+class ZumoQueen : public EvoFFNAnimat
 {
 public:
 	//double lines;
@@ -159,12 +155,12 @@ public:
 	int counter = 0;
 	
 	//EvoMouses *enermy;
-	EvoMousesOpponent():lines(0)
+	ZumoQueen():lines(0)
 	{
 		This.Add("lineSensor", ProximitySensor<circleCenter>(2 * PI, 200.0f, -PI));
 		//Sensors["lineSensor"] -> SetMatchingFunction(new MatchExact<circleCenter>);
-		This.Add("left", ProximitySensor<EvoMouses>(PI/5, 200.0, -PI/20));
-		This.Add("right", ProximitySensor<EvoMouses>(PI/5, 200.0, PI/20));
+		This.Add("left", ProximitySensor<ZumoKing>(PI/5, 200.0, -PI/20));
+		This.Add("right", ProximitySensor<ZumoKing>(PI/5, 200.0, PI/20));
 
 		//This.SetInitRandom(true);	// Start in random locations
 		This.InitRandom = false;
@@ -251,40 +247,36 @@ private:
 
 class ShrewSimulation : public Simulation
 {
-	GeneticAlgorithm<EvoMouses> gaEvo;
-	GeneticAlgorithm<EvoMousesOpponent> gaEvoEnemy;
-	Population<EvoMouses> popEvo;
-	Population<EvoMousesOpponent> popEvoEnemy;
+	GeneticAlgorithm<ZumoKing> gaKing;
+	GeneticAlgorithm<ZumoQueen> gaQueen;
+	Population<ZumoKing> popKing;
+	Population<ZumoQueen> popQueen;
 	// Group<EvoMouses> grpShrew;
 	Group<Circle> theCircle;
 	Group<circleCenter> theCircleCenter;
 
 public:
 	ShrewSimulation():
-	gaEvo(0.7f, 0.05f),
-	gaEvoEnemy(0.7f, 0.05f),
-	popEvo(2, gaEvo),
-	popEvoEnemy(2, gaEvoEnemy),
+	gaKing(0.7f, 0.05f),
+	gaQueen(0.7f, 0.05f),
+	popKing(2, gaKing),
+	popQueen(2, gaQueen),
 	theCircle(1),
 	theCircleCenter(1)
 	{
-		This.gaEvo.SetSelection(GA_TOURNAMENT);
-		This.gaEvo.SetParameter(GA_TOURNAMENT_SIZE, 1);
-		This.gaEvoEnemy.SetSelection(GA_TOURNAMENT);
-		This.gaEvoEnemy.SetParameter(GA_TOURNAMENT_SIZE, 1);
-		popEvo.SetTeamSize(1);
-		popEvoEnemy.SetTeamSize(1);
+		This.gaKing.SetSelection(GA_TOURNAMENT);
+		This.gaKing.SetParameter(GA_TOURNAMENT_SIZE, 1);
+		This.gaQueen.SetSelection(GA_TOURNAMENT);
+		This.gaQueen.SetParameter(GA_TOURNAMENT_SIZE, 1);
+		popKing.SetTeamSize(1);
+		popQueen.SetTeamSize(1);
 		SetAssessments(2);
 		// if(inRangeA == false || inRangeB)
-		This.Add("EvoMouses", This.popEvo);
-		This.Add("EvoMousesEnemy", This.popEvoEnemy);
+		This.Add("ZumoKing", This.popKing);
+		This.Add("ZumoQueen", This.popQueen);
 		
 		This.Add("Circle", This.theCircle);
 		This.Add("circleCenter", This.theCircleCenter);
-		
-
-		//This.Add("Shrews", This.grpShrew);
-		//This.Add("Shrews_opponent", This.grpShrew_opponent);
 		This.SetTimeSteps(500);
 	}
 };
