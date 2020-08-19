@@ -236,18 +236,18 @@ public:
 	ShrewSimulation():
 	gaKing(0.7f, 0.05f),
 	gaQueen(0.7f, 0.05f),
-	popKing(2, gaKing),
-	popQueen(2, gaQueen),
+	popKing(5, gaKing),
+	popQueen(5, gaQueen),
 	theCircle(1),
 	theCircleCenter(1)
 	{
-		This.gaKing.SetSelection(GA_TOURNAMENT);
-		This.gaKing.SetParameter(GA_TOURNAMENT_SIZE, 1);
-		This.gaQueen.SetSelection(GA_TOURNAMENT);
-		This.gaQueen.SetParameter(GA_TOURNAMENT_SIZE, 1);
+		This.gaKing.SetSelection(GA_RANK);
+		This.gaKing.SetParameter(GA_RANK_SPRESSURE, 1);
+		This.gaQueen.SetSelection(GA_RANK);
+		This.gaQueen.SetParameter(GA_RANK_SPRESSURE, 1);
 		popKing.SetTeamSize(1);
 		popQueen.SetTeamSize(1);
-		SetAssessments(2);
+		SetAssessments(5);
 		// if(inRangeA == false || inRangeB)
 		This.Add("ZumoKing", This.popKing);
 		This.Add("ZumoQueen", This.popQueen);
