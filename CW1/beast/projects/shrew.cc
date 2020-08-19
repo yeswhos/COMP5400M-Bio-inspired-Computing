@@ -131,6 +131,14 @@ public:
 		//cout << score << endl;
 		return score;
 	}
+	virtual float GetFitness()const
+	{	
+		score = 5 * counterB - 0.5 * counterA + 0.1 * This.DistanceTravelled;
+		if (score < 0){
+			score =0;
+		} 
+		return score;
+	}
 
 	// Overloading the ToString method allows us to output a small amount of
 	// information which is visible in the status bar of the GUI when a
