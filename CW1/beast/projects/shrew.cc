@@ -107,36 +107,15 @@ public:
 	// 	//setEnermy(enermy);
 	// 	FFNAnimat::OnCollision(obj);
 	// }
-
 	virtual float GetFitness()const
 	{	
-		// return score;
 		float score = 0.0;
-		// if (counterB == 0){
-		// 	score = 1;
-		// }else{
-		// 	score = counterB;
-		// }
-		float midValue = 0.0;
-		if(counterB == 0){
-			midValue = 7;
-		}else{
-			midValue = 1 / 5 * counterB;
-		}
-		score = 1 / (0.5 * counterA + midValue);
-		if(score > 1){
-			score = 1;
-		}
-		counterA = 0;
-		//cout << score << endl;
-		return score;
-	}
-	virtual float GetFitness()const
-	{	
-		score = 5 * counterB - 0.5 * counterA + 0.1 * This.DistanceTravelled;
+		score = 5 * counterB - 0.5 * counterA + 0.0005 * This.DistanceTravelled;
+		//cout << This.DistanceTravelled << endl;
 		if (score < 0){
-			score =0;
+			score = 0;
 		} 
+		counterB = 0;
 		return score;
 	}
 
@@ -219,23 +198,13 @@ public:
 	virtual float GetFitness()const
 	{	
 		float score = 0.0;
-		float midValue = 0.0;
-		if(counterA == 0){
-			midValue = 5;
-		}else{
-			midValue = 1 / counterA;
+		score = counterA - 5 * counterB + 0.0005 * This.DistanceTravelled;
+		//cout << This.DistanceTravelled << endl;
+		if (score < 0){
+			score = 0;
 		}
-		score = 1 / (counterB + midValue);
-		if(score > 1){
-			score = 1;
-		}
-		counterB = 0;
-		//cout << score << endl;
+		counterA = 0;
 		return score;
-
-		// int score = enermy -> counter;
-		// float fitness = score - This.counter;
-		// return fitness;
 	}
 
 	// Overloading the ToString method allows us to output a small amount of
