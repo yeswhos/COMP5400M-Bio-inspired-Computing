@@ -112,13 +112,22 @@ public:
 	virtual float GetFitness()const
 	{	
 		float score = 0.0;
-		score = 5 * counterB - 0.5 * counterA + 0.0005 * This.DistanceTravelled;
+		score = 8 * counterB - 0.8 * counterA + 0.0005 * This.DistanceTravelled;
+		//score = 5 * counterB - 0.5 * counterA;
 		//cout << This.DistanceTravelled << endl;
 		if (score < 0){
 			score = 0;
 		} 
 		counterB = 0;
+		//cout << score << endl;
 		return score;
+
+		// float score = 0.0;
+		// if(counterB == 0){
+		// 	return 0;
+		// }
+		// score = 1 / (counterA + (1 / 10 * counterB));
+		// return score;
 	}
 
 	// Overloading the ToString method allows us to output a small amount of
@@ -156,6 +165,7 @@ public:
 		This.SetStartLocation(Vector2D(300, 300));
 		
 		This.Radius = 25.0;
+		SetMaxSpeed(100.0);
 		SetMinSpeed(0.0);
 		This.InitFFN(5);
 
@@ -200,13 +210,19 @@ public:
 	virtual float GetFitness()const
 	{	
 		float score = 0.0;
-		score = counterA - 5 * counterB + 0.0005 * This.DistanceTravelled;
-		//cout << This.DistanceTravelled << endl;
+		score = 2 * (counterA - 5 * counterB) + 0.0005 * This.DistanceTravelled;
+
 		if (score < 0){
 			score = 0;
 		}
 		counterA = 0;
 		return score;
+		// float score = 0.0;
+		// if(counterA == 0){
+		// 	return 0.1;
+		// }
+		// score = 1 / (10 * counterB + (1 / counterA));
+		// return score;
 	}
 
 	// Overloading the ToString method allows us to output a small amount of
@@ -238,18 +254,18 @@ public:
 	ShrewSimulation():
 	gaKing(0.7f, 0.05f),
 	gaQueen(0.7f, 0.05f),
-	popKing(5, gaKing),
-	popQueen(5, gaQueen),
+	popKing(2, gaKing),
+	popQueen(2, gaQueen),
 	theCircle(1),
 	theCircleCenter(1)
 	{
-		This.gaKing.SetSelection(GA_RANK);
-		This.gaKing.SetParameter(GA_RANK_SPRESSURE, 2.0);
-		This.gaQueen.SetSelection(GA_RANK);
-		This.gaQueen.SetParameter(GA_RANK_SPRESSURE, 2.0);
+		This.gaKing.SetSelection(GA_TOURNAMENT);
+		This.gaKing.SetParameter(GA_TOURNAMENT_SIZE, 1);
+		This.gaQueen.SetSelection(GA_TOURNAMENT);
+		This.gaQueen.SetParameter(GA_TOURNAMENT_SIZE, 1);
 		popKing.SetTeamSize(1);
 		popQueen.SetTeamSize(1);
-		SetAssessments(5);
+		SetAssessments(2);
 		// if(inRangeA == false || inRangeB)
 		This.Add("ZumoKing", This.popKing);
 		This.Add("ZumoQueen", This.popQueen);
