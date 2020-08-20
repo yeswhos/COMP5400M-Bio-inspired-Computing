@@ -112,11 +112,14 @@ public:
 	virtual float GetFitness()const
 	{	
 		float score = 0.0;
-		score = 8 * counterB - 0.8 * counterA + 0.0005 * This.DistanceTravelled;
+		if ((counterA == 0) && (counterB == 0)){
+			return 0.0;
+		}
+		score = 8 * counterB - 0.8 * counterA + 0.0001 * This.DistanceTravelled;
 		//score = 5 * counterB - 0.5 * counterA;
 		//cout << This.DistanceTravelled << endl;
 		if (score < 0){
-			score = 0;
+			score = 0.0;
 		} 
 		counterB = 0;
 		//cout << score << endl;
@@ -210,10 +213,13 @@ public:
 	virtual float GetFitness()const
 	{	
 		float score = 0.0;
-		score = 2 * (counterA - 5 * counterB) + 0.0005 * This.DistanceTravelled;
-
+		if ((counterA == 0) && (counterB == 0)){
+			return 0.0;
+		}
+		//score = 2 * (counterA - 5 * counterB) + 0.0001 * This.DistanceTravelled;
+		score = counterA - 5 * counterB;
 		if (score < 0){
-			score = 0;
+			score = 0.0;
 		}
 		counterA = 0;
 		return score;
@@ -239,6 +245,7 @@ private:
 	double lines;
 
 };
+
 
 class ShrewSimulation : public Simulation
 {
