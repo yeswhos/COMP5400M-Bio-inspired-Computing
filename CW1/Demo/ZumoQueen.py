@@ -32,6 +32,7 @@ for i in range(0, len(a)):
 # for i in range(0, len(ave)):
 #     #print(ave[i])
 
+fig = matplotlib.pyplot.gcf()
 
 plt.xlabel("epoch")
 plt.ylabel("fitness")
@@ -42,6 +43,7 @@ l2, = plt.plot(best, color = 'green', linestyle = '-', label = "best fitness")
 plt.plot(ave, best, linewidth = 0.5)
 plt.legend(loc = 'upper right')
 #plt.plot(ave)
-plt.title("Q5 prey agent", fontsize = 10)
+plt.title("ZumoQueen", fontsize = 10)
 #plt.xlim(0, 610)
+fig.set_size_inches(18.5, 10.5, forward = True)
 plt.savefig("1000 epoch prey")
