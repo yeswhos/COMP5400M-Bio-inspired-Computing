@@ -213,8 +213,8 @@ public:
 	{	
 		float score = 0.0;
 
-		//score = 2 * (counterA - 5 * counterB) + 0.0001 * This.DistanceTravelled;
-		score = counterA - 5 * counterB;
+		score = counterA - 5 * counterB + 0.0001 * This.DistanceTravelled;
+		//score = counterA - 5 * counterB;
 		if ((counterA == 0) && (counterB == 0)){
 			score = 0.0;
 		}
