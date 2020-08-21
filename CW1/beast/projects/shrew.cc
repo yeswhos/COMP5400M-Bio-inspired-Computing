@@ -272,10 +272,10 @@ public:
 	theCircle(1),
 	theCircleCenter(1)
 	{
-		This.gaKing.SetSelection(GA_ROULETTE);
-		This.gaKing.SetParameter(GA_EXPONENT, 0.7);
-		This.gaQueen.SetSelection(GA_ROULETTE);
-		This.gaQueen.SetParameter(GA_EXPONENT, 0.7);
+		This.gaKing.SetSelection(GA_TOURNAMENT);
+		This.gaKing.SetParameter(GA_TOURNAMENT_PARAM, 0.7);
+		This.gaQueen.SetSelection(GA_TOURNAMENT);
+		This.gaQueen.SetParameter(GA_TOURNAMENT_PARAM, 0.7);
 		popKing.SetTeamSize(1);
 		popQueen.SetTeamSize(1);
 		SetAssessments(5);
