@@ -11,22 +11,23 @@ tmp = np.zeros(5)
 c = -1
 total = 0
 for i in range(0, len(a)):
-    if((i % 4 == 0) & (i != 0)):
-        maximum = max(tmp) / 1
+    if((i % 5 == 0) and (i != 0)):
+        maximum = max(tmp)
         best.append(maximum)
-        for i in range(0, 5):
-            total = total + tmp[i]
+        for j in range(0, 5):
+            total = total + tmp[j]
         average = total / 5
         ave.append(average)
         c = -1
+        print(tmp)
         tmp = np.zeros(5)
         total = 0
-
+    
     c = c + 1
-    tmp[c] = tmp[c] + a[i]
+    tmp[c] = a[i]
     if(c == 4):
         c = -1
-    
+
 
 # for i in range(0, len(best)):
 #     #print(best[i])
