@@ -4,29 +4,29 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import numpy as np
 
-a = np.loadtxt("prey.txt")
+a = np.loadtxt("ZumoQueen.txt")
 best = []
 ave = []
-tmp = np.zeros(30)
+tmp = np.zeros(5)
 c = -1
 total = 0
 for i in range(0, len(a)):
-    if((i % 299 == 0) & (i != 0)):
-        maximum = max(tmp) / 10
+    if((i % 4 == 0) & (i != 0)):
+        maximum = max(tmp) / 1
         #maximum = 1 / maximum 
         best.append(maximum)
-        for i in range(0, 30):
+        for i in range(0, 5):
             total = total + tmp[i]
-        average = total / 30 / 10
+        average = total / 5 / 1
         #average = 1 / average
         ave.append(average)
         c = -1
-        tmp = np.zeros(30)
+        tmp = np.zeros(5)
         total = 0
 
     c = c + 1
     tmp[c] = tmp[c] + (1 / a[i])
-    if(c == 29):
+    if(c == 4):
         c = -1
     
 # for i in range(0, len(best)):
