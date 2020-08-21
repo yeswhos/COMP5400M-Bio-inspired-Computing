@@ -25,7 +25,7 @@ for i in range(0, len(a)):
         total = 0
 
     c = c + 1
-    tmp[c] = tmp[c] + (1 / a[i])
+    tmp[c] = tmp[c] + a[i]
     if(c == 4):
         c = -1
     
