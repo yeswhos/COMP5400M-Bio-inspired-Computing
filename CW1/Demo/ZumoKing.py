@@ -19,7 +19,6 @@ for i in range(0, len(a)):
         average = total / 5
         ave.append(average)
         c = -1
-        print(tmp)
         tmp = np.zeros(5)
         total = 0
     
