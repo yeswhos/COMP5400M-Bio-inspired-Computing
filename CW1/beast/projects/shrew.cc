@@ -112,25 +112,24 @@ public:
 	virtual float GetFitness()const
 	{	
 		float score = 0.0;
-		if ((counterA == 0) && (counterB == 0)){
-			return 0.0;
-		}
+
 		score = 8 * counterB - 0.8 * counterA + 0.0001 * This.DistanceTravelled;
+		if ((counterA == 0) && (counterB == 0)){
+			score = 0.0;
+		}
 		//score = 5 * counterB - 0.5 * counterA;
 		//cout << This.DistanceTravelled << endl;
 		if (score < 0){
 			score = 0.0;
 		} 
 		counterB = 0;
+
+		float a = score;
+		ofstream out("/home/beast/COMP5400M-Bio-inspired-Computing/CW1/Demo/ZumoKing.txt", ios::app);
+		out << a << endl;
+		out.close();
 		//cout << score << endl;
 		return score;
-
-		// float score = 0.0;
-		// if(counterB == 0){
-		// 	return 0;
-		// }
-		// score = 1 / (counterA + (1 / 10 * counterB));
-		// return score;
 	}
 
 	// Overloading the ToString method allows us to output a small amount of
@@ -213,16 +212,23 @@ public:
 	virtual float GetFitness()const
 	{	
 		float score = 0.0;
-		if ((counterA == 0) && (counterB == 0)){
-			return 0.0;
-		}
+
 		//score = 2 * (counterA - 5 * counterB) + 0.0001 * This.DistanceTravelled;
 		score = counterA - 5 * counterB;
+		if ((counterA == 0) && (counterB == 0)){
+			score = 0.0;
+		}
 		if (score < 0){
 			score = 0.0;
 		}
 		counterA = 0;
+		float b = score;
+		ofstream out("/home/beast/COMP5400M-Bio-inspired-Computing/CW1/Demo/ZumoQueen.txt", ios::app);
+		out << b << endl;
+		out.close();
+		//cout << score << endl;
 		return score;
+
 		// float score = 0.0;
 		// if(counterA == 0){
 		// 	return 0.1;
